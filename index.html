@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="radpath">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>RadPath FollowThrough</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body ng-controller="RadPathController as radpath">
+
+        <!-- Add your site or application content here -->
+        <div id="container" ng-init="tab = 2">
+            <ul id="main-tabs">
+                <li ng-class="{ active:tab === 1}" ng-click="tab = 1">Worklist</li>
+                <li>My Saved Cases</li>
+                <li>Shared Worklists</li>
+                <li>Remote Sites</li>
+                <li>SingleView</li>
+                <li ng-class="{ active:tab === 2}" ng-click="tab = 2">FollowUp</li>
+            </ul>
+
+            <div id="worklist" ng-show="tab === 1">
+                <!-- worklist tab -->
+            </div>
+            <div id="followup" ng-show="tab === 2">
+                <!-- follow up tab -->
+
+                <div id="followup-available">
+                    <!-- follow up available section -->
+                    <ul>
+                        <li ng-repeat="patient in radpath.patients">
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <ul>
+                                <li ng-repeat="report in patient.reports">
+                                <p>
+                                    <div ng-show="report.type == 'rad'" class="report-list rad-item">
+                                        <h3>Radiology Report</h3>
+                                        <b>ID:</b> {{report.id}}<br/>
+                                        <b>Date</b> {{report.date}}<br/>
+                                        <b>Exam type:</b> {{report.exam_type}}<br/>
+                                        <b>Left BIRADS Score:</b> {{report.LBIRAD}}<br/>
+                                        <b>Right BIRADS Score:</b> {{report.RBIRAD}}<br/>
+                                        <b>Findings:</b> {{report.findings}}<br/>
+                                        <b>Recommendation:</b> {{report.recommend}}<br/>
+                                        <b>Radiologist:</b> Dr. {{ radpath.getRadiologist(report.radiologist_id)}}
+                                    </div>
+
+                                    <div ng-show="report.type == 'path'" class="report-list path-item">
+                                        <h3>Pathology Report</h3>
+                                        <b>ID:</b> {{report.id}}<br/>
+                                        <b>Date</b> {{report.date}}<br/>
+                                        <b>Diagnosis:</b> {{report.diagnosis}}<br/>
+                                        <b>FD CUIs:</b> {{report.fd_cui}}<br/>
+                                        <b>Location:</b> {{report.location}}<br/>
+                                        <b>Procedure</b> {{report.procedure}}<br/>
+                                        <b>Findings:</b> {{report.findings}}<br/>
+                                        <b>Classification:</b> {{report.classification}}<br/>
+                                        <b>Pathologist:</b> Dr. {{ radpath.getPathologist(report.pathologist_id)}}
+                                    </div>
+                                </p>
+                                <li>
+                            </ul>
+                            <div>
+                            <b>Recieving Feedback for:</b> 
+                                <span ng-repeat="(key, value) in patient.requested_feedback.type | filter:value">
+                                    {{key}} | 
+                                </span>
+                            </div>
+                            <div id="small-followup-form">
+                            <form name="requestFeedbackForm" ng-controller="RequestFeedbackController as requestFeedbackCtrl" ng-submit="requestFeedbackCtrl.requestFeedback(patient)">
+                                <div class="requestFeedbackInput">
+                                    <div>Any Radiology Report</div>
+                                    <input type="checkbox" name="any_radiology" ng-model="requestFeedbackCtrl.feedbackRequest.type.any_radiology">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Breast MRI</div>
+                                    <input type="checkbox" name="breast_mri" ng-model="requestFeedbackCtrl.feedbackRequest.type.breast_mri">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Mammogram</div>
+                                    <input type="checkbox" value="mammogram" ng-model="requestFeedbackCtrl.feedbackRequest.type.mammogram">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Ultrasound</div>
+                                    <input type="checkbox" value="ultrasound" ng-model="requestFeedbackCtrl.feedbackRequest.type.ultrasound">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Other Radiology Report</div>
+                                    <input type="checkbox" value="other_radiology" ng-model="requestFeedbackCtrl.feedbackRequest.type.other_radiology">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <div>Pathology Report</div>
+                                    <input type="checkbox" value="pathology" ng-model="requestFeedbackCtrl.feedbackRequest.type.pathology">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <div>6 Month Follow Up</div>
+                                    <input type="checkbox" value="six_month" ng-model="requestFeedbackCtrl.feedbackRequest.type.six_month">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <div>Add Notes to Follow Up</div>
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Send to Colleague</div>
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <input type='submit' value='DONE'>
+                                </div>
+                            </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/helpers.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
