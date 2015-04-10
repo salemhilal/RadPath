@@ -26,18 +26,61 @@
             <div id="worklist" ng-show="tab === 1">
                 <!-- worklist tab -->
             </div>
-            <div id="followup" ng-show="tab === 2">
+            <div id="followup" ng-show="tab === 2" ng-init="fu_tab = 1">
                 <!-- follow up tab -->
 
-                <div id="followup-available">
+                <ul id="followup-tabs">
+                    <li ng-class="{ active:fu_tab === 1}" ng-click="fu_tab = 1">New Follow Up<span>4</span></li>
+                    <li ng-class="{ active:fu_tab === 2}" ng-click="fu_tab = 2">All Pending<span>6</span></li>
+                    <li ng-class="{ active:fu_tab === 3}" ng-click="fu_tab = 3">Starred<span>8</span></li>
+                    <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4">Pending Pathology<span>3</span></li>
+                    <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5">Pending Radiology<span>2</span></li>
+                    <li ng-class="{ active:fu_tab === 6}" ng-click="fu_tab = 6">Archived<span>48</span></li>
+                </ul>
+
+                <div class="fu_header">
+                    <div>Patient Information</div>
+                    <div>Status</div>
+                    <div>Latest Findings</div>
+                    <div>Your Report</div>
+                </div>
+                
+                <div class="fu_container" id="new_fu" ng-show="fu_tab === 1">
+                New Follow Up
+
+                    <div class="overview_cell">
+                        <h2>Bishop, Grace</h2>
+                    </div>
+                </div>
+
+                <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2">
+                All Pending
+                </div>
+
+                <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3">
+                Starred
+                </div>
+
+                <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4">
+                Pending Pathology
+                </div>
+
+                <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5">
+                Pending Radiology
+                </div>
+
+                <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6">
+                Archived
+                </div>
+
+                <div style="display:none;" id="followup-available">
                     <!-- follow up available section -->
                     <ul>
                         <li ng-repeat="patient in radpath.patients">
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <ul>
-                                <li ng-repeat="report in patient.reports">
-                                <p>
-                                    <div ng-show="report.type == 'rad'" class="report-list rad-item">
+                            <ul class="report-cell-list">
+                                <li class="report-cell" ng-repeat="report in patient.reports">
+                                    <div ng-show="report.type == 'rad'" class="report-list-item rad-item">
                                         <h3>Radiology Report</h3>
                                         <b>ID:</b> {{report.id}}<br/>
                                         <b>Date</b> {{report.date}}<br/>
@@ -49,7 +92,7 @@
                                         <b>Radiologist:</b> Dr. {{ radpath.getRadiologist(report.radiologist_id)}}
                                     </div>
 
-                                    <div ng-show="report.type == 'path'" class="report-list path-item">
+                                    <div ng-show="report.type == 'path'" class="report-list-item path-item">
                                         <h3>Pathology Report</h3>
                                         <b>ID:</b> {{report.id}}<br/>
                                         <b>Date</b> {{report.date}}<br/>
@@ -61,7 +104,6 @@
                                         <b>Classification:</b> {{report.classification}}<br/>
                                         <b>Pathologist:</b> Dr. {{ radpath.getPathologist(report.pathologist_id)}}
                                     </div>
-                                </p>
                                 <li>
                             </ul>
                             <div>
