@@ -331,29 +331,6 @@ p,
 	margin:0;
 }
 
-.report-cell-list {
-	margin: 30px;
-}
-
-
-.report-list-item {
-	padding: 5px 0 10px 20px;
-	margin: 10px;
-	width: 750px;
-	min-height: 200px;
-	border-radius: 3px;
-	border: solid 1px #242932;
-
-	background-color: #373E4A;
-}
-
-.rad-item {
-
-}
-
-.path-item {
-	
-}
 
 #small-followup-form {
 	width: 320px;
@@ -382,3 +359,75 @@ p,
 	float: left;
 }
 
+
+/*
+	DETAIL PAGE
+*/
+.fu_header_detail {
+	background-color: #29303F;
+}
+
+.fu_header_detail a {
+	color: inherit;
+}
+
+section.report {
+	width: 100%;
+	padding: 0 0 0 0;
+	border-bottom: solid 2px #1A2028;
+}
+
+section.report.timeline .report-body {
+	height: 150px;
+	padding-top:10px;
+	padding-left: 0px;
+}
+
+section.report.path-report {
+
+}
+
+section.report.rad-report {
+	height: 205px;	
+}
+
+.report-header {
+	width: 100%;
+	height: 30px;
+	font-size: 12px;
+	color: white;
+	line-height: 30px;
+	background-color: #333C4E;
+	padding-left: 46px;
+	padding-right: 46px;
+	border-bottom: solid 1px #1A2028;
+}
+
+.report-header div {
+	display: block;
+	float: left;
+	width: 232px;
+}
+
+.report-header div:last-child {
+	font-weight: 500;
+}
+
+.report-body {
+	padding: 20px 46px 20px 46px;
+	box-sizing: border-box;
+}
+
+.report-body .left-col {
+	float:left;
+	width: 232px;
+}
+
+.report-body .cell_section_1 p {
+	position: relative;
+	bottom: -12px;
+}
+
+.report-body .right-col {
+	float:left;
+}
