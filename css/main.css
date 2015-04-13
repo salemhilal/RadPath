@@ -31,19 +31,19 @@ html {
 /*MAIN TABS*/
 ul#main-tabs {
 width: 100%;
-  min-width: 800px;
-  height: 54px;
-  display: block;
-  line-height: 38px;
-  margin: 0 0 0 0;
-  padding: 0 0 0 158px;
-  background: #252B3D;
-  position: fixed;
-  box-shadow: 1px 1px 5px rgba(0,0,0,.48);
-  font-size: 16px;
-  border-bottom: solid 1px #1A2028;
-  z-index: 200;
-  min-width: 1182px;
+	min-width: 800px;
+	height: 54px;
+	display: block;
+	line-height: 38px;
+	margin: 0 0 0 0;
+	padding: 0 0 0 158px;
+	background: #252B3D;
+	position: fixed;
+	box-shadow: 1px 1px 5px rgba(0,0,0,.48);
+	font-size: 16px;
+	border-bottom: solid 1px #1A2028;
+	z-index: 200;
+	min-width: 1182px;
 }
 
 #main-tabs li {

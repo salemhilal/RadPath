@@ -5,10 +5,10 @@ function findObj(attr, value, array) {
 	var result = array.filter(function(obj) {
 	  return obj[attr] == value;
 	});
-	if (result.length == 1) {
+	if (result.length === 1) {
 		return result[0];
 	}
-	else if (result.length == 0) {
+	else if (result.length === 0) {
 		return false;
 	}
 	else {
@@ -23,9 +23,6 @@ function findObjs(attr, value, array) {
 	});
 	if (result.length > 0) {
 		return result;
-	}
-	else if (result.length == 0) {
-		return false;
 	}
 	else {
 		return false;

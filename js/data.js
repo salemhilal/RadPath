@@ -1,3 +1,4 @@
+
 var data = {
 	patients: [
 		{
@@ -6,6 +7,7 @@ var data = {
 			last_name: 'Bouchard',
 			requested_feedback: [],
 			feedback: [],
+			star: true,
 			reports: [
 				{
 					id: 11235281,
@@ -38,6 +40,7 @@ var data = {
 			first_name: 'Kayla',
 			last_name: 'Patel',
 			requested_feedback: [],
+			star: true,
 			reports: [
 				{
 					id: 31263633,

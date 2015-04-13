@@ -1,5 +1,22 @@
 (function(){
 var app = angular.module('radpath', []);
+
+// Filter for starred cases.
+app.filter('starred', function() {
+	return function(patients) {
+		var filtered = [];
+		for (var i = 0; i < patients.length; i++) {
+			var patient = patients[i];
+			if (patient.star) {
+				filtered.push(patient);
+			}
+		}
+		return filtered;
+	};
+});
+
+
+// Main controller
 app.controller('RadPathController', function(){
 	this.patients = data.patients;
 	this.radiologists = data.radiologists;
@@ -8,12 +25,18 @@ app.controller('RadPathController', function(){
 	this.getRadiologist = function(id){
 		var r = findObj('id', id, this.radiologists);
 		return r.first_name + ' ' + r.last_name;
-	}
+	};
 
 	this.getPathologist = function(id){
 		var p = findObj('id', id, this.pathologists);
 		return p.first_name + ' ' + p.last_name;
-	}
+	};
+
+	this.toggleStar = function(id) {
+		console.log('toggling', id);
+		var p = findObj('id', id, this.patients);
+		p.star = !p.star;
+	};
 });
 
 app.controller('RequestFeedbackController', function(){
@@ -25,7 +48,7 @@ app.controller('RequestFeedbackController', function(){
 		newRequest.date = new Date();
 		patient.requested_feedback = newRequest;
 
-	}
+	};
 });
 
 })();
