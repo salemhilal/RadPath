@@ -40,7 +40,7 @@ app.filter('seen', function() {
 	};
 });
 
-// Determine if a patient is in the worklist. 
+// Determine if a patient is in the worklist.
 app.filter('worklist', function() {
 	return function(patients) {
 		var filtered = [];
@@ -99,7 +99,6 @@ app.controller('RadPathController', function(){
 				.show();
 			});
 	};
-
 
 	this.hideContextMenues = function() {
 		$('.small-followup-form').fadeOut(100);

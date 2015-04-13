@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="small-followup-form form-{{patient.id}}">
-                        <form name="requestFeedbackForm" ng-controller="RequestFeedbackController as requestFeedbackCtrl" ng-submit="requestFeedbackCtrl.requestFeedback(patient)">
+                        <form name="requestFeedbackForm" ng-controller="RequestFeedbackController as requestFeedbackCtrl" ng-submit="requestFeedbackCtrl.requestFeedback(patient)" ng-click="$event.stopPropagation()">
                             <div class="requestFeedbackInput">
                                 <div>Any Radiology Report</div>
                                 <input type="checkbox" name="any_radiology" ng-model="requestFeedbackCtrl.feedbackRequest.type.any_radiology">
