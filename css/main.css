@@ -337,14 +337,19 @@ p,
 
 
 .small-followup-form {
-	width: 320px;
-	height: auto;
-	border: solid 1px #C0C0C0;
-	border-radius: 3px;
-	box-shadow: 0px 0px 8px rgba(153, 153, 153, 0.56);
-	position: fixed;
-	display: none;
-	z-index: 999;
+  width: 232px;
+  font-size: 14px;
+  position: absolute;
+  top: 150px;
+  left: 289px;
+  height: auto;
+  padding: 10px 5px 10px 5px;
+  /* padding-right: 10px; */
+  border: solid 1px #13171D;
+  border-radius: 3px;
+  background-color: #262D3E;
+  box-shadow: 0px 0px 8px rgba(55, 53, 53, 0.85);
+  z-index: 1000;
 }
 
 .requestFeedbackInput {
