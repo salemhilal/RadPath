@@ -32,7 +32,10 @@
                 <ul id="followup-tabs">
                     <li ng-class="{ active:fu_tab === 1}" ng-click="fu_tab = 1">New Follow Up<span>4</span></li>
                     <li ng-class="{ active:fu_tab === 2}" ng-click="fu_tab = 2">All Pending<span>6</span></li>
-                    <li ng-class="{ active:fu_tab === 3}" ng-click="fu_tab = 3">Starred<span>8</span></li>
+                    <li ng-class="{ active:fu_tab === 3}" ng-click="fu_tab = 3">
+                        Starred
+                        <span>{{(radpath.patients|starred).length}}</span>
+                    </li>
                     <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4">Pending Pathology<span>3</span></li>
                     <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5">Pending Radiology<span>2</span></li>
                     <li ng-class="{ active:fu_tab === 6}" ng-click="fu_tab = 6">Archived<span>48</span></li>

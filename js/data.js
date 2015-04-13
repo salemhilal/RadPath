@@ -40,6 +40,7 @@ var data = {
 			first_name: 'Kayla',
 			last_name: 'Patel',
 			requested_feedback: [],
+			feedback: [],
 			star: true,
 			reports: [
 				{
