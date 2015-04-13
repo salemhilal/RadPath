@@ -7,7 +7,9 @@ var data = {
 			last_name: 'Bouchard',
 			requested_feedback: [],
 			feedback: [],
-			star: true,
+			star: false,
+			seen: false,
+			worklist: true,
 			reports: [
 				{
 					id: 11235281,
@@ -41,7 +43,9 @@ var data = {
 			last_name: 'Patel',
 			requested_feedback: [],
 			feedback: [],
-			star: true,
+			star: false,
+			seen: false,
+			worklist: true,
 			reports: [
 				{
 					id: 31263633,
@@ -87,6 +91,9 @@ var data = {
 			last_name: 'Williams',
 			requested_feedback: [],
 			feedback: [],
+			star: false,
+			seen: false,
+			worklist: true,
 			reports: [
 				{
 					id: 41392054,
@@ -120,6 +127,9 @@ var data = {
 			last_name: 'Clark',
 			requested_feedback: [],
 			feedback: [],
+			star: false,
+			seen: false,
+			worklist: true,
 			reports: [
 				{
 					id: 51684935,
@@ -153,6 +163,9 @@ var data = {
 			last_name: 'Ortez',
 			requested_feedback: [],
 			feedback: [],
+			star: false,
+			seen: false,
+			worklist: true,
 			reports: [
 				{
 					id: 61439066,

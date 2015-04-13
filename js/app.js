@@ -15,6 +15,36 @@ app.filter('starred', function() {
 	};
 });
 
+// Filter for seen patients. Pass "false" to match unseen patients.
+app.filter('seen', function() {
+	return function(patients, seen) {
+		var filtered = [];
+		var seen = (typeof seen === "undefined") ? true : seen;
+		for (var i = 0; i < patients.length; i++) {
+			var patient = patients[i];
+			if (patient.seen === seen) {
+				filtered.push(patient);
+			}
+		}	
+		return filtered;
+	};
+});
+
+
+// Determine if a patient is in the worklist. 
+app.filter('worklist', function() {
+	return function(patients) {
+		var filtered = [];
+		for (var i = 0; i < patients.length; i++) {
+			var patient = patients[i];
+			if (patient.worklist) {
+				filtered.push(patient);
+			}
+		}	
+		return filtered;
+	};
+});
+
 
 // Main controller
 app.controller('RadPathController', function(){
