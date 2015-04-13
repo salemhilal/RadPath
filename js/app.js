@@ -117,4 +117,13 @@ app.controller('RequestFeedbackController', function(){
 	};
 });
 
+// $('.addNotes').click(function(){addNotes()});
+
 })();
+
+function addNotes(){
+	console.log("this: ", $(this));
+	$($(this).siblings()[0]).css('display', 'inline-block');
+	$(this).parent().css('height', '100');
+	$($(this).siblings()[0]).focus();
+}

@@ -86,15 +86,16 @@
                                 <input type="checkbox" value="six_month" ng-model="requestFeedbackCtrl.feedbackRequest.type.six_month">
                             </div>
                             <hr>
-                            <div class="requestFeedbackInput">
-                                <div>Add Notes to Follow Up</div>
+                            <div class="requestFeedbackInput" id="notes-{{patient.id}}">
+                                <div onclick="addNotes()">Add Notes to Follow Up</div>
+                                <textarea rows="4" cols="27"></textarea>
                             </div>
                             <div class="requestFeedbackInput">
                                 <div>Send to Colleague</div>
                             </div>
                             <hr>
                             <div class="requestFeedbackInput">
-                                <input type='submit' value='DONE'>
+                                <input type='submit' value='Request Follow Up'>
                             </div>
                         </form>
                     </div>
@@ -155,6 +156,8 @@
                         <div class="cell_section_4">
                             <p class="status_type">Radiology Report</p>
                             <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+
+                            <div class="jewel">L : 4</div>
                         </div>
 
                     </div>
@@ -234,10 +237,17 @@
 
                         <div class="report-body">
                             <div class="left-col">
-
+                            Findings:
+                                <div class="jewel">L : 4</div>
+                            <p class="report-id">CHJ764</p>
+                            <p>Radiologist: Stefanie Jackobson</p>
                             </div>
                             <div class="right-col">
+                                <p>lorem ipsum dolor sit amet, consectetur adis pc in g elit , sed do eisumod temport inncident ut laobo rmod temport inncident ut laobor mod temport inncident ut laobor.</p>
 
+                                <img src="img/R1.png" width="90" />
+
+                                <div class="open-whole-case">Open Case</div>
                             </div>
                         </div>
                     </section>

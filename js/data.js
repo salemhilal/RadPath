@@ -10,6 +10,7 @@ var data = {
 			star: false,
 			seen: false,
 			worklist: true,
+			physician: 'Juan Garza',
 			reports: [
 				{
 					id: 11235281,
@@ -46,6 +47,7 @@ var data = {
 			star: false,
 			seen: false,
 			worklist: true,
+			physician: 'Megan Robinson',
 			reports: [
 				{
 					id: 31263633,
@@ -94,6 +96,7 @@ var data = {
 			star: false,
 			seen: false,
 			worklist: true,
+			physician: 'Gerald Mitchell',
 			reports: [
 				{
 					id: 41392054,
@@ -130,6 +133,7 @@ var data = {
 			star: false,
 			seen: false,
 			worklist: true,
+			physician: 'Kelly Jenkins',
 			reports: [
 				{
 					id: 51684935,
@@ -166,6 +170,7 @@ var data = {
 			star: false,
 			seen: false,
 			worklist: true,
+			physician: 'Virginia Rose',
 			reports: [
 				{
 					id: 61439066,
