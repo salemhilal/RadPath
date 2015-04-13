@@ -57,6 +57,10 @@ width: 100%;
 	cursor: pointer;
 }
 
+#worklist {
+	padding-top: 50px;
+}
+
 /*#main-tabs li.active:after{ 
     position: relative; 
     height: 60px; 
@@ -332,12 +336,15 @@ p,
 }
 
 
-#small-followup-form {
+.small-followup-form {
 	width: 320px;
 	height: auto;
 	border: solid 1px #C0C0C0;
 	border-radius: 3px;
 	box-shadow: 0px 0px 8px rgba(153, 153, 153, 0.56);
+	position: fixed;
+	display: none;
+	z-index: 999;
 }
 
 .requestFeedbackInput {

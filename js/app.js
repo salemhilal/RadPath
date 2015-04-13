@@ -1,6 +1,16 @@
 (function(){
 var app = angular.module('radpath', []);
 
+
+/***********************
+
+Filters
+
+We use lots of these, because most of the views
+essentially just show subsets of our cases.
+
+***********************/
+
 // Filter for starred cases.
 app.filter('starred', function() {
 	return function(patients) {
@@ -19,17 +29,16 @@ app.filter('starred', function() {
 app.filter('seen', function() {
 	return function(patients, seen) {
 		var filtered = [];
-		var seen = (typeof seen === "undefined") ? true : seen;
+		var isSeen = (typeof seen === "undefined") ? true : seen;
 		for (var i = 0; i < patients.length; i++) {
 			var patient = patients[i];
-			if (patient.seen === seen) {
+			if (patient.seen === isSeen) {
 				filtered.push(patient);
 			}
-		}	
+		}
 		return filtered;
 	};
 });
-
 
 // Determine if a patient is in the worklist. 
 app.filter('worklist', function() {
@@ -40,11 +49,23 @@ app.filter('worklist', function() {
 			if (patient.worklist) {
 				filtered.push(patient);
 			}
-		}	
+		}
 		return filtered;
 	};
 });
 
+// Right click directive
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
 
 // Main controller
 app.controller('RadPathController', function(){
@@ -66,6 +87,22 @@ app.controller('RadPathController', function(){
 		console.log('toggling', id);
 		var p = findObj('id', id, this.patients);
 		p.star = !p.star;
+	};
+
+	this.showContextMenu = function($event, id) {
+		console.log('right click on ' + id);
+		console.log('$event', $event);
+		$('.small-followup-form')
+			.fadeOut(100, function() {
+				$('.small-followup-form.form-' + id)
+				.css({'top': $event.clientY, 'left': $event.clientX })
+				.show();
+			});
+	};
+
+
+	this.hideContextMenues = function() {
+		$('.small-followup-form').fadeOut(100);
 	};
 });
 
