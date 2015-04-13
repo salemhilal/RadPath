@@ -339,7 +339,7 @@ p,
 .small-followup-form {
   width: 232px;
   font-size: 14px;
-  position: absolute;
+  position: fixed;
   top: 150px;
   left: 289px;
   height: auto;
