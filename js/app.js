@@ -65,14 +65,9 @@ app.filter('archive', function() {
 // Determine if a patient is in the worklist.
 app.filter('worklist', function() {
 	return function(patients) {
-		var filtered = [];
-		for (var i = 0; i < patients.length; i++) {
-			var patient = patients[i];
-			if (patient.worklist) {
-				filtered.push(patient);
-			}
-		}
-		return filtered;
+		return patients.filter(function (patient) {
+			return patient.worklist;
+		});
 	};
 });
 
