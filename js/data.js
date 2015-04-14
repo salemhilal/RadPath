@@ -4,7 +4,7 @@ var data = {
 		{
 			id: 1,
 			first_name: 'Stella',
-			last_name: 'Bouchard',
+			last_name: 'Perrot',
 			requested_feedback: [],
 			feedback: [],
 			star: false,
