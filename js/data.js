@@ -23,18 +23,6 @@ var data = {
 					findings: '',
 					recommend: 'Biopsy considered',
 					radiologist_id: 1
-				},
-				{
-					id: 21325232,
-					type: 'path',
-					date: '1/7/2014',
-					diagnosis: 'Infiltrating Ductal Carcinoma',
-					fd_cui: 'C1134719',
-					location: 'Right Breast',
-					procedure: 'Biopsy',
-					findings: 'Moderately differentiated | Nottingham Score 6/9',
-					classification: 'Malignant',
-					pathologist_id: 1
 				}
 			]
 		},

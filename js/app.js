@@ -1,4 +1,6 @@
 (function(){
+
+var SECONDS_BEFORE_FEEDBACK = 15;
 var app = angular.module('radpath', []);
 
 
@@ -145,21 +147,25 @@ app.controller('RadPathController', function($scope) {
 	$scope.detailCase = {};					// Currently active detailed case
 	$scope.detail = false;					// Detail mode toggle
 
+	// Given an ID, gets a radiologist.
 	this.getRadiologist = function(id) {
 		var r = findObj('id', id, this.radiologists);
 		return r.first_name + ' ' + r.last_name;
 	};
 
+	// Given an ID, gets a pathologist.
 	this.getPathologist = function(id) {
 		var p = findObj('id', id, this.pathologists);
 		return p.first_name + ' ' + p.last_name;
 	};
 
+	// Toggles a star given a patient's ID.
 	this.toggleStar = function(id) {
 		var p = findObj('id', id, this.patients);
 		p.star = !p.star;
 	};
 
+	// Shows a context menu for a worklist case.
 	this.showContextMenu = function($event, id) {
 		$('#worklist table tr').removeClass('context-open');
 		console.log('right click on ' + id);
@@ -172,19 +178,61 @@ app.controller('RadPathController', function($scope) {
 		$('#patient_'+id).addClass('context-open');
 	};
 
+	// Hides any visable context menus (hopefully just one).
 	$scope.hideContextMenues = function() {
 		$('#worklist table tr').removeClass('context-open');
 		$('.context-menu').fadeOut(100);
 	};
 
+	// Shows a followup case in detail
 	$scope.showCaseDetail = function(patient) {
 		$scope.detailCase = patient;
 		$scope.detail = true;
 	};
 
+	// Exits the detail view. Isn't Angular just swell? Why is this a function.
 	$scope.hideCaseDetail = function() {
 		$scope.detail = false;
 	};
+
+	// Forgive me Lord, I know not what I'm doing.
+	var that = this;
+	var checkForStella = setInterval(function() {
+		var potentiallyStella = that.patients.filter(function (patient) {
+			return 	patient.first_name == "Stella" &&
+					patient.requested_feedback &&
+					patient.requested_feedback.is_fulfilled === false;
+		});
+
+		// Is Stella awaiting feedback?
+		if (potentiallyStella.length === 1) {
+			clearInterval(checkForStella);
+			setTimeout(function() {
+				$scope.$apply(function() {
+					var stella = potentiallyStella[0];
+					var newCase = {
+						id: 21325232,
+						type: 'path',
+						date: '1/7/2014',
+						diagnosis: 'Infiltrating Ductal Carcinoma',
+						fd_cui: 'C1134719',
+						location: 'Right Breast',
+						procedure: 'Biopsy',
+						findings: 'Moderately differentiated | Nottingham Score 6/9',
+						classification: 'Malignant',
+						pathologist_id: 1
+					};
+
+					stella.requested_feedback.is_fulfilled = true;
+					stella.seen = false;
+					stella.feedback.push(newCase);
+					stella.reports.push(newCase);
+					console.log("comin atchu");
+				});
+
+			}, SECONDS_BEFORE_FEEDBACK * 1000);
+		}
+	}, 1000);
 });
 
 app.controller('RequestFeedbackController', function($scope) {
