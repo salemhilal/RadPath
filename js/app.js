@@ -187,6 +187,7 @@ app.controller('RadPathController', function($scope) {
 	// Shows a followup case in detail
 	$scope.showCaseDetail = function(patient) {
 		$scope.detailCase = patient;
+		patient.seen = true;
 		$scope.detail = true;
 	};
 
