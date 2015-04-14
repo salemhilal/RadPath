@@ -30,11 +30,17 @@ var data = {
 			id: 2,
 			first_name: 'Kayla',
 			last_name: 'Patel',
-			requested_feedback: [],
+			requested_feedback: {
+				date: new Date(),
+				is_fulfilled: false,
+				type: {
+					pathology: true
+				}
+			},
 			feedback: [],
 			star: false,
 			seen: false,
-			worklist: true,
+			worklist: false,
 			physician: 'Megan Robinson',
 			reports: [
 				{
@@ -45,7 +51,7 @@ var data = {
 					exam_type: 'Mammogram',
 					LBIRAD: 3,
 					RBIRAD: 2,
-					findings: 'fibroglandural density | indistinct area in the left breast |upper inner quadrant with scattered amorphous microcalcifications',
+					findings: 'fibroglandural density | indistinct area in the left breast | upper inner quadrant with scattered amorphous microcalcifications',
 					recommend: '',
 					radiologist_id: 1
 				},
@@ -56,23 +62,23 @@ var data = {
 					image_id: 'R3',
 					exam_type: 'Ultrasound',
 					LBIRAD: 4,
-					RBIRAD: undefined,
-					findings: '',
+					RBIRAD: 2,
+					findings: 'Biopsy recommended',
 					recommend: 'Biopsy recommended',
 					radiologist_id: 4
 				},
-				{
-					id: 33489323,
-					type: 'path',
-					date: '2/22/2013',
-					diagnosis: 'Invasive Ductal Carcinoma',
-					fd_cui: 'C1134719',
-					location: 'Left Breast',
-					procedure: 'Lumpectomy',
-					findings: 'FOCAL PAPILLARY FEATURES | 2.4 cm | NOTTINGHAM SCORE 7/9 | NUCLEAR GRADE 3| EXTENSIVE DCIS | CENTRAL COMEDO TYPE NECROSIS | MICROCALCIFICATIONS',
-					classification: '',
-					pathologist_id: 2
-				}
+				// {
+				// 	id: 33489323,
+				// 	type: 'path',
+				// 	date: '2/22/2013',
+				// 	diagnosis: 'Invasive Ductal Carcinoma',
+				// 	fd_cui: 'C1134719',
+				// 	location: 'Left Breast',
+				// 	procedure: 'Lumpectomy',
+				// 	findings: 'FOCAL PAPILLARY FEATURES | 2.4 cm | NOTTINGHAM SCORE 7/9 | NUCLEAR GRADE 3| EXTENSIVE DCIS | CENTRAL COMEDO TYPE NECROSIS | MICROCALCIFICATIONS',
+				// 	classification: '',
+				// 	pathologist_id: 2
+				// }
 			]
 		},
 		{

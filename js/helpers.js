@@ -17,7 +17,6 @@ function findObj(attr, value, array) {
 }
 
 function findObjs(attr, value, array) {
-	console.log('this is array', array, attr, value);
 	// Find multiple objects by attribute value in array
 	var result = array.filter(function(obj) {
 	  return obj[attr] == value;

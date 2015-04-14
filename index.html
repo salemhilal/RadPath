@@ -107,9 +107,7 @@
                         <div class="menu-item">View Exam Cache Status</div>
                     </div></td>
                   </tr>
-    
                 </table>
-                
             </div>
 
 
@@ -164,14 +162,14 @@
 
                 <!-- New Follow-up -->
                 <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell">
+                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -180,8 +178,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
@@ -193,14 +191,14 @@
 
                 <!-- All Pending -->
                 <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
-                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell">
+                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -209,8 +207,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
@@ -222,14 +220,14 @@
 
                 <!-- Starred -->
                 <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell">
+                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -238,8 +236,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
@@ -251,14 +249,14 @@
 
                 <!-- Pending Pathology -->
                 <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
-                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell">
+                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -267,8 +265,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
@@ -280,14 +278,14 @@
 
                 <!-- Pending Radiology -->
                 <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell">
+                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -296,8 +294,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
@@ -309,14 +307,14 @@
 
                 <!-- Archived -->
                 <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell">
+                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
-                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
+                            <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
@@ -325,8 +323,8 @@
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">

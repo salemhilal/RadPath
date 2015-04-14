@@ -1,6 +1,6 @@
 (function(){
 
-var SECONDS_BEFORE_FEEDBACK = 1;
+var SECONDS_BEFORE_FEEDBACK = 20;
 var app = angular.module('radpath', []);
 
 
@@ -206,6 +206,10 @@ app.controller('RadPathController', function($scope) {
 			return "Radiologist: Dr. " + that.getPathologist(report.pathologist_id);
 		}
 	};
+
+	$scope.last = function(arr) {
+		return arr[arr.length - 1];
+	}
 
 	$scope.findObjs = findObjs;
 	$scope.findObj = findObj;
