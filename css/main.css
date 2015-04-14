@@ -270,7 +270,8 @@ findings: 295px;
     width: 295px;
 }
 
-.cell_section_4 .jewel {
+.cell_section_4 .jewel,
+.cell_section_3 .jewel{
     top: 15px;
     left: 210px;
     font-size: 12px;
@@ -289,6 +290,11 @@ findings: 295px;
     font-weight: 600;
     width: 62px;
     text-align: center;
+}
+
+.jewel.path-jewel {
+  width: 75px;
+  color: rgb(153, 166, 188);
 }
 
 /*.fu_header div:nth-child(2),
