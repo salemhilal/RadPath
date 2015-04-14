@@ -57,6 +57,21 @@ ul#main-tabs {
     cursor: pointer;
 }
 
+#main-tabs li span {
+  display: block;
+  width: 20px;
+  top: 18px;
+  left: 744px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #333C4E;
+  color: white;
+  position: absolute;
+  text-align: center;
+}
+
 #worklist {
     padding-top: 50px;
 }
@@ -190,7 +205,7 @@ ul#followup-tabs li:hover {
 }
 
 #worklist table tr td:nth-child(2) {
-    width: 155px;
+    width: 205px;
     font-size: 14px;
 }
 
@@ -199,23 +214,23 @@ ul#followup-tabs li:hover {
 }
 
 #worklist table tr:first-child th:nth-child(3) {
-    left: 425px;
+    left: 475px;
 }
 
 #worklist table tr td:nth-child(3) {
-    width: 125px;
+    width: 175px;
 }
 
 #worklist table tr:first-child th:nth-child(4) {
-    left: 550px;
+    left: 650px;
 }
 
 #worklist table tr td:nth-child(4) {
-    width: 125px;
+    width: 175px;
 }
 
 #worklist table tr:first-child th:nth-child(5) {
-    left: 675px;
+    left: 825px;
 }
 /*
 
@@ -420,6 +435,10 @@ p,
     line-height: 20px;
     font-weight: normal;
     margin:0;
+}
+
+.pending-color {
+    color: #1F9DC9;
 }
 
 .status_type {
@@ -636,3 +655,55 @@ p.report-id {
     border: solid 2px #1A2028;
     margin-right: 10px;
 }
+
+.timeline-group {
+    height: 100%;
+    margin-left: 45px;
+}
+
+.timeline-event {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 125px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    color: white;
+    position: relative;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/timeline_circle.png);
+    background-size: 20px;
+}
+
+.timeline-event .pending {
+    font-size: 14px;
+}
+
+.timeline-event:before {
+  content: "";
+  background: #1a2028;
+  position: absolute;
+  bottom: 58px;
+  left: -53px;
+  height: 4px;
+  width: 108px;
+}
+
+.timeline-event:first-child:before {
+    height: 0px;
+    width: 0px;
+}
+
+.timeline-date {
+    position: relative;
+    top: 20px;
+}
+
+.timeline-label {
+    position: relative;
+    top: 68px;
+}
+

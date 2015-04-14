@@ -18,7 +18,7 @@
                 <li ng-class="{ active:tab === 1}" ng-click="tab = 1">Worklist</li>
                 <li>My Saved Cases</li>
                 <li>Shared Worklists</li>
-                <li ng-class="{ active:tab === 2}" ng-click="tab = 2">Follow Up</li>
+                <li ng-class="{ active:tab === 2}" ng-click="tab = 2">Follow Up <span>2</span></li>
                 <li>Remote Sites</li>
                 <li>SingleView</li>
             </ul>
@@ -43,34 +43,7 @@
                     <td>{{patient.reports[patient.reports.length-1].date}}</td>
                     <td>(completed)</td>
                     <td>TELEMED</td>
-                  </tr>
-    
-                </table>
-                <div ng-repeat="patient in radpath.patients|worklist" class="overview_cell" ng-right-click="radpath.showContextMenu($event, patient.id)">
-                    <div class="cell_section_1">
-                        <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                        <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
-                        <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
-                    </div>
-                    <div class="cell_section_2">
-                        <p class="completed">Biopsy completed<br><span>8/12/15</span></p>
-                        <ul class="normal">
-                            <li class='pending'><span>pending pathology</span></li>
-                            <li><span>radiology report complete</span></li>
-                            <li><span>mammogram complete</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="cell_section_3">
-                        <p class="status_type">Biopsy Summary</p>
-                        <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
-                    </div>
-
-                    <div class="cell_section_4">
-                        <p class="status_type">Radiology Report</p>
-                        <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
-                    </div>
-                    <div class="context-menu menu-{{patient.id}}">
+                    <td><div class="context-menu menu-{{patient.id}}">
                         <div class="menu-item">Take Control</div>
                         <hr>
                         <div class="menu-item">View Only</div>
@@ -129,15 +102,18 @@
                         <hr>
                         <div class="menu-item">Cache Exam</div>
                         <div class="menu-item">View Exam Cache Status</div>
-                    </div>
-                </div>
+                    </div></td>
+                  </tr>
+    
+                </table>
+                
             </div>
 
 
             <!--****************************
                 FOLLOWUP TAB
             ****************************-->
-            <div id="followup" ng-show="tab === 2" ng-init="fu_tab = 3; detail = false;">
+            <div id="followup" ng-show="tab === 2" ng-init="fu_tab = 3; detail = true;">
                 <!-- follow up tab -->
 
                 <ul id="followup-tabs">
@@ -339,7 +315,20 @@
                                 </div>
                             </div>
                             <div class="right-col">
-
+                                <div class="timeline-group">
+                                    <div class="timeline-event">
+                                        <div class="timeline-date">11/13/14</div>
+                                        <div class="timeline-label">Mammogram</div>
+                                    </div>
+                                    <div class="timeline-event">
+                                        <div class="timeline-date">12/13/15</div>
+                                        <div class="timeline-label">Mammogram</div>
+                                    </div>
+                                    <div class="timeline-event">
+                                        <div class="timeline-date pending-color">pending</div>
+                                        <div class="timeline-label">Biopsy</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </section>
