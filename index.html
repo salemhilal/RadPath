@@ -150,8 +150,14 @@
                         Starred
                         <span>{{(radpath.patients|starred).length}}</span>
                     </li>
-                    <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4">Pending Pathology<span>3</span></li>
-                    <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5">Pending Radiology<span>2</span></li>
+                    <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4">
+                        Pending Pathology
+                        <span>{{(radpath.patients | pending | pendingPath).length}}</span>
+                    </li>
+                    <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5">
+                        Pending Radiology
+                        <span>{{(radpath.patients | pending | pendingRad).length}}</span>
+                    </li>
                     <li ng-class="{ active:fu_tab === 6}" ng-click="fu_tab = 6">Archived<span>48</span></li>
                 </ul>
 
@@ -255,12 +261,62 @@
                     </div>
                 </div>
 
+                <!-- Pending Pathology -->
                 <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4">
-                Pending Pathology
+                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell">
+                        <div class="cell_section_1">
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
+                        </div>
+                        <div class="cell_section_2">
+                            <p class="completed">Biopsy completed<br><span>8/12/15</span></p>
+                            <ul class="normal">
+                                <li class='pending'><span>pending pathology</span></li>
+                                <li><span>radiology report complete</span></li>
+                                <li><span>mammogram complete</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="cell_section_3">
+                            <p class="status_type">Biopsy Summary</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+
+                        <div class="cell_section_4">
+                            <p class="status_type">Radiology Report</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Pending Radiology -->
                 <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5">
-                Pending Radiology
+                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell">
+                        <div class="cell_section_1">
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
+                        </div>
+                        <div class="cell_section_2">
+                            <p class="completed">Biopsy completed<br><span>8/12/15</span></p>
+                            <ul class="normal">
+                                <li class='pending'><span>pending pathology</span></li>
+                                <li><span>radiology report complete</span></li>
+                                <li><span>mammogram complete</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="cell_section_3">
+                            <p class="status_type">Biopsy Summary</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+
+                        <div class="cell_section_4">
+                            <p class="status_type">Radiology Report</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6">

@@ -58,9 +58,33 @@ app.filter('worklist', function() {
 app.filter('pending', function () {
 	return function (patients) {
 		return patients.filter(function (patient) {
-			console.log('is this patient good to go', patient.id, patient.requested_feedback && !patient.requested_feedback.is_fulfilled);
 			return patient.requested_feedback &&
 					patient.requested_feedback.is_fulfilled === false;
+		});
+	};
+});
+
+// Is something a pending rad case?
+// Note: chain this after 'pending' to make sure it's pending.
+app.filter('pendingRad', function () {
+	return function (patients) {
+		return patients.filter(function (patient) {
+			var type = patient.requested_feedback.type;
+			return 	type.any_radiology ||
+					type.breast_mri ||
+					type.mammogram ||
+					type.other_radiology ||
+					type.ultrasound;
+		});
+	};
+});
+
+// Is something a pending path case?
+// Note: chain this after 'pending' to make sure it's pending.
+app.filter('pendingPath', function () {
+	return function (patients) {
+		return patients.filter(function (patient) {
+			return patient.requested_feedback.type.pathology;
 		});
 	};
 });
