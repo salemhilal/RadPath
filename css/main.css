@@ -448,7 +448,7 @@ p,
 .small-followup-form {
   position: absolute;
   top: 150px;
-  left: 230px;
+  left: 225px;
   display: none;
 }
 
@@ -459,7 +459,7 @@ p,
 .rfu-item {
     background-image: url(../img/disclosure_blue.png);
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: 200px center;
     background-size: 8px;
 }
 
