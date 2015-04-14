@@ -41,7 +41,7 @@
                     <th>Exam Loc.</th>
                   </tr>
                   <tr ng-repeat="patient in radpath.patients|worklist" class="worklist_cell" ng-right-click="radpath.showContextMenu($event, patient.id)" id="patient_{{patient.id}}">
-                    <td>{{patient.last_name}}, {{patient.first_name}}<div>{{patient.reports[patient.reports.length-1].procedure}}</div></td>
+                    <td>{{patient.last_name}}, {{patient.first_name}}<div>{{patient.reports[patient.reports.length-1].procedure || patient.reports[patient.reports.length-1].exam_type}}</div></td>
                     <td>#{{patient.reports[patient.reports.length-1].id}}<div>{{patient.reports[patient.reports.length-1].fd_cui}}</div></td> 
                     <td>{{patient.reports[patient.reports.length-1].date}}</td>
                     <td>(completed)</td>
@@ -173,9 +173,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -202,9 +202,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -231,9 +231,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -260,9 +260,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -289,9 +289,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -318,9 +318,9 @@
                         <div class="cell_section_2">
                             <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
-                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
@@ -354,15 +354,11 @@
                             </div>
                             <div class="right-col">
                                 <div class="timeline-group">
-                                    <div class="timeline-event">
-                                        <div class="timeline-date">11/13/14</div>
-                                        <div class="timeline-label">Mammogram</div>
+                                    <div ng-repeat="report in detailCase.reports" class="timeline-event">
+                                        <div class="timeline-date">{{report.date}}</div>
+                                        <div class="timeline-label">{{report.exam_type || report.procedure}}</div>
                                     </div>
-                                    <div class="timeline-event">
-                                        <div class="timeline-date">12/13/15</div>
-                                        <div class="timeline-label">Mammogram</div>
-                                    </div>
-                                    <div class="timeline-event">
+                                    <div ng-show="!detailCase.requested_feedback.is_fulfilled" class="timeline-event">
                                         <div class="timeline-date pending-color">pending</div>
                                         <div class="timeline-label">Biopsy</div>
                                     </div>
@@ -371,21 +367,24 @@
                         </div>
                     </section>
 
-                    <section class="report rad-report">
+                    <section ng-repeat="report in detailCase.reports" class="report rad-report">
                         <div class="report-header">
-                            <div>11/13/14</div>
-                            <div>Mammogram</div>
+                            <div>{{report.date}}</div>
+                            <div>{{report.exam_type || report.procedure}}</div>
                         </div>
 
                         <div class="report-body">
                             <div class="left-col">
                             Findings:
-                                <div class="jewel">L : 4</div>
+                                <div class="jewel" ng-show="report.LBIRAD || report.RBIRAD">
+                                    L : {{report.LBIRAD}}, R : {{report.RBIRAD}}
+                                </div>
+                                <div class="jewel" ng-show="report.classification">{{report.classification}}</div>
                             <p class="report-id">CHJ764</p>
-                            <p>Radiologist: Stefanie Jackobson</p>
+                            <p>{{doctorDisplay(report)}}</p>
                             </div>
                             <div class="right-col">
-                                <p>lorem ipsum dolor sit amet, consectetur adis pc in g elit , sed do eisumod temport inncident ut laobo rmod temport inncident ut laobor mod temport inncident ut laobor.</p>
+                                <p>{{report.findings}} | {{report.recommend}}</p>
 
                                 <img src="img/R1.png" width="90" />
 

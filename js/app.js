@@ -146,6 +146,7 @@ app.controller('RadPathController', function($scope) {
 
 	$scope.detailCase = {};					// Currently active detailed case
 	$scope.detail = false;					// Detail mode toggle
+	var that = this;						// Def not the angular way
 
 	// Given an ID, gets a radiologist.
 	this.getRadiologist = function(id) {
@@ -196,11 +197,18 @@ app.controller('RadPathController', function($scope) {
 		$scope.detail = false;
 	};
 
+	$scope.doctorDisplay = function(report) {
+		if(report.radiologist_id) {
+			return "Radiologist: Dr. " + that.getRadiologist(report.radiologist_id);
+		} else if (report.pathologist_id) {
+			return "Radiologist: Dr. " + that.getPathologist(report.pathologist_id);
+		}
+	};
+
 	$scope.findObjs = findObjs;
 	$scope.findObj = findObj;
 
 	// Forgive me Lord, I know not what I'm doing.
-	var that = this;
 	var checkForStella = setInterval(function() {
 		var potentiallyStella = that.patients.filter(function (patient) {
 			return 	patient.first_name == "Stella" &&
