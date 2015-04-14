@@ -456,6 +456,17 @@ p,
     display: block;
 }
 
+.rfu-item {
+    background-image: url(../img/disclosure_blue.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 8px;
+}
+
+.rfu-item:hover {
+    background-image: url(../img/disclosure_white.png);
+}
+
 .small-followup-form hr,
 .context-menu hr {
     border-color: rgba(120, 130, 150, 0.3);
