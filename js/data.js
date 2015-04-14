@@ -242,14 +242,5 @@ var data = {
 			first_name: 'Ben',
 			last_name: 'Albrecht'
 		}
-	],
-	caseTypes: [
-		"all_rad",
-		"mri",
-		"mammo",
-		"ultra",
-		"other_rad",
-		"path",
-		"6mo"
 	]
 };

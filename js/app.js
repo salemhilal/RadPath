@@ -54,6 +54,25 @@ app.filter('worklist', function() {
 	};
 });
 
+// Is something a pending feedback case?
+app.filter('pending', function () {
+	return function (patients) {
+		return patients.filter(function (patient) {
+			console.log('is this patient good to go', patient.id, patient.requested_feedback && !patient.requested_feedback.is_fulfilled);
+			return patient.requested_feedback &&
+					patient.requested_feedback.is_fulfilled === false;
+		});
+	};
+});
+
+/***********************
+
+Directives
+
+Mostly just that one right click one.
+
+***********************/
+
 // Right click directive
 app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
@@ -66,6 +85,15 @@ app.directive('ngRightClick', function($parse) {
         });
     };
 });
+
+
+/***********************
+
+Controllers
+
+Because they're cool and generally a good time.
+
+***********************/
 
 // Main controller
 app.controller('RadPathController', function($scope) {
@@ -113,9 +141,11 @@ app.controller('RequestFeedbackController', function($scope) {
 	$scope.requestFeedback = function(patient) {
 		this.hideContextMenues();
 		var newRequest = $scope.feedbackRequest;
+		console.log('newRequest', newRequest);
 		newRequest.is_fulfilled = false;
 		newRequest.date = new Date();
 		patient.requested_feedback = newRequest;
+		console.log("new patient", patient);
 	};
 });
 
