@@ -68,13 +68,13 @@ app.directive('ngRightClick', function($parse) {
 });
 
 // Main controller
-app.controller('RadPathController', function() {
+app.controller('RadPathController', function($scope) {
 	this.patients = data.patients;
 	this.radiologists = data.radiologists;
 	this.pathologists = data.pathologists;
 	this.caseTypes = data.caseTypes;
 
-	this.getRadiologist = function(id){
+	this.getRadiologist = function(id) {
 		var r = findObj('id', id, this.radiologists);
 		return r.first_name + ' ' + r.last_name;
 	};
@@ -85,7 +85,6 @@ app.controller('RadPathController', function() {
 	};
 
 	this.toggleStar = function(id) {
-		console.log('toggling', id);
 		var p = findObj('id', id, this.patients);
 		p.star = !p.star;
 	};
@@ -93,7 +92,6 @@ app.controller('RadPathController', function() {
 	this.showContextMenu = function($event, id) {
 		$('#worklist table tr').removeClass('context-open');
 		console.log('right click on ' + id);
-		console.log('$event', $event);
 		$('.context-menu')
 			.fadeOut(100, function() {
 				$('.context-menu.menu-' + id)
@@ -103,21 +101,21 @@ app.controller('RadPathController', function() {
 		$('#patient_'+id).addClass('context-open');
 	};
 
-	this.hideContextMenues = function() {
+	$scope.hideContextMenues = function() {
 		$('#worklist table tr').removeClass('context-open');
 		$('.context-menu').fadeOut(100);
 	};
 });
 
-app.controller('RequestFeedbackController', function() {
-	this.feedbackRequest = {};
+app.controller('RequestFeedbackController', function($scope) {
+	$scope.feedbackRequest = {};
 
-	this.requestFeedback = function(patient) {
-		var newRequest = this.feedbackRequest;
+	$scope.requestFeedback = function(patient) {
+		this.hideContextMenues();
+		var newRequest = $scope.feedbackRequest;
 		newRequest.is_fulfilled = false;
 		newRequest.date = new Date();
 		patient.requested_feedback = newRequest;
-
 	};
 });
 
