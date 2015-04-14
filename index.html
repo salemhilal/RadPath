@@ -113,30 +113,38 @@
             <!--****************************
                 FOLLOWUP TAB
             ****************************-->
-            <div id="followup" ng-show="tab === 2" ng-init="fu_tab = 3; detail = true;">
-                <!-- follow up tab -->
 
+            <div id="followup" ng-show="tab === 2" ng-init="fu_tab = 3;">
+
+                <!-- Sidebar -->
                 <ul id="followup-tabs">
-                    <li ng-class="{ active:fu_tab === 1}" ng-click="fu_tab = 1">New Follow Up<span>4</span></li>
-                    <li ng-class="{ active:fu_tab === 2}" ng-click="fu_tab = 2">
+                    <li ng-class="{ active:fu_tab === 1}" ng-click="fu_tab = 1; hideCaseDetail()">
+                        New Follow Up
+                        <span>{{(radpath.patients | newfollowup).length}}</span>
+                    </li>
+                    <li ng-class="{ active:fu_tab === 2}" ng-click="fu_tab = 2; hideCaseDetail()">
                         All Pending
                         <span>{{(radpath.patients|pending).length}}</span>
                     </li>
-                    <li ng-class="{ active:fu_tab === 3}" ng-click="fu_tab = 3">
+                    <li ng-class="{ active:fu_tab === 3}" ng-click="fu_tab = 3; hideCaseDetail()">
                         Starred
                         <span>{{(radpath.patients|starred).length}}</span>
                     </li>
-                    <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4">
+                    <li ng-class="{ active:fu_tab === 4}" ng-click="fu_tab = 4; hideCaseDetail()">
                         Pending Pathology
                         <span>{{(radpath.patients | pending | pendingPath).length}}</span>
                     </li>
-                    <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5">
+                    <li ng-class="{ active:fu_tab === 5}" ng-click="fu_tab = 5; hideCaseDetail()">
                         Pending Radiology
                         <span>{{(radpath.patients | pending | pendingRad).length}}</span>
                     </li>
-                    <li ng-class="{ active:fu_tab === 6}" ng-click="fu_tab = 6">Archived<span>48</span></li>
+                    <li ng-class="{ active:fu_tab === 6}" ng-click="fu_tab = 6; hideCaseDetail()">
+                        Archived
+                        <span>{{(radpath.patients | archive).length}}</span>
+                    </li>
                 </ul>
 
+                <!-- Headers -->
                 <div class="fu_header" ng-show="detail == false">
                     <div>Patient Information</div>
                     <div>Status</div>
@@ -144,15 +152,18 @@
                     <div>Your Report</div>
                 </div>
 
+                <!-- Back to list from detail view -->
                 <div class="fu_header fu_header_detail" ng-show="detail == true">
-                    <a href="#">&#60; Back to List</a>
+                    <a href="#" ng-click="hideCaseDetail()">&#60; Back to List</a>
                 </div>
 
-                <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail == false">
+                <!-- New Follow-up -->
+                <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
+                    <!-- TODO: This is hardcoded and should be deleted -->
                     <div class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star"></div>
-                            <h2>Bishop, Grace</h2>
+                            <h2>Bouchard, Stella</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -175,13 +186,37 @@
 
                             <div class="jewel">L : 4</div>
                         </div>
+                    </div>
+                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell" ng-click="showCaseDetail(patient)">
+                        <div class="cell_section_1">
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
+                        </div>
+                        <div class="cell_section_2">
+                            <p class="completed">Biopsy completed<br><span>8/12/15</span></p>
+                            <ul class="normal">
+                                <li class='pending'><span>pending pathology</span></li>
+                                <li><span>radiology report complete</span></li>
+                                <li><span>mammogram complete</span></li>
+                            </ul>
+                        </div>
 
+                        <div class="cell_section_3">
+                            <p class="status_type">Biopsy Summary</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+
+                        <div class="cell_section_4">
+                            <p class="status_type">Radiology Report</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- All Pending -->
-                <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2">
-                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell">
+                <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
+                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
@@ -209,8 +244,8 @@
                 </div>
 
                 <!-- Starred -->
-                <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3">
-                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell">
+                <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
+                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
@@ -238,8 +273,8 @@
                 </div>
 
                 <!-- Pending Pathology -->
-                <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4">
-                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell">
+                <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
+                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
@@ -267,8 +302,8 @@
                 </div>
 
                 <!-- Pending Radiology -->
-                <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5">
-                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell">
+                <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
+                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
@@ -295,10 +330,36 @@
                     </div>
                 </div>
 
-                <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6">
-                Archived
+                <!-- Archived -->
+                <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
+                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell" ng-click="showCaseDetail(patient)">
+                        <div class="cell_section_1">
+                            <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
+                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
+                        </div>
+                        <div class="cell_section_2">
+                            <p class="completed">Biopsy completed<br><span>8/12/15</span></p>
+                            <ul class="normal">
+                                <li class='pending'><span>pending pathology</span></li>
+                                <li><span>radiology report complete</span></li>
+                                <li><span>mammogram complete</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="cell_section_3">
+                            <p class="status_type">Biopsy Summary</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+
+                        <div class="cell_section_4">
+                            <p class="status_type">Radiology Report</p>
+                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Detail View -->
                 <div class="fu_container" id="detail_fu" ng-show="detail == true">
                     <section class="report timeline">
                         <div class="report-header">
@@ -310,7 +371,7 @@
                             <div class="left-col">
                                 <div class="cell_section_1">
                                     <div class="cell_star"></div>
-                                    <h2>Bishop, Grace</h2>
+                                    <h2>{{detailCase.last_name}}, {{detailCase.first_name}}</h2>
                                     <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding<br/>DOB: 11/13/75</p>
                                 </div>
                             </div>
