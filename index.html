@@ -158,6 +158,7 @@
                     <div class="continue-followup">Continue Follow Up</div>
                 </div>
 
+
                 <!-- New Follow-up -->
                 <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
                     <!-- TODO: This is hardcoded and should be deleted -->
@@ -417,6 +418,52 @@
                             </div>
                         </div>
                     </section>
+                    <div class="small-followup-form detail-page-form" >
+                            <form name="requestFeedbackForm" ng-controller="RequestFeedbackController as requestFeedbackCtrl" ng-submit="requestFeedback(detailCase)" ng-click="$event.stopPropagation()">
+                                <div class="requestFeedbackInput">
+                                    <div>Any Radiology Report</div>
+                                    <input type="checkbox" name="any_radiology" ng-model="feedbackRequest.type.any_radiology">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Breast MRI</div>
+                                    <input type="checkbox" name="breast_mri" ng-model="feedbackRequest.type.breast_mri">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Mammogram</div>
+                                    <input type="checkbox" value="mammogram" ng-model="feedbackRequest.type.mammogram">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Ultrasound</div>
+                                    <input type="checkbox" value="ultrasound" ng-model="feedbackRequest.type.ultrasound">
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Other Radiology Report</div>
+                                    <input type="checkbox" value="other_radiology" ng-model="feedbackRequest.type.other_radiology">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <div>Pathology Report</div>
+                                    <input type="checkbox" value="pathology" ng-model="feedbackRequest.type.pathology">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <div>6 Month Follow Up</div>
+                                    <input type="checkbox" value="six_month" ng-model="feedbackRequest.type.six_month">
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput" id="notes-{{patient.id}}">
+                                    <div onclick="addNotes()">Add Notes to Follow Up</div>
+                                    <textarea rows="4" cols="27"></textarea>
+                                </div>
+                                <div class="requestFeedbackInput">
+                                    <div>Send to Colleague</div>
+                                </div>
+                                <hr>
+                                <div class="requestFeedbackInput">
+                                    <input type='submit' value='Request Follow Up'>
+                                </div>
+                            </form>
+                        </div>
                 </div>
 
                 <div style="display:none;" id="followup-available">

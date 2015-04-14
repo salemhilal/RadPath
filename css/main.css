@@ -471,6 +471,12 @@ p,
   display: none;
 }
 
+.detail-page-form {    
+    right: 24px;
+    top: 87px;
+    left: initial;
+    position: fixed;
+}
 .rfu-item:hover .small-followup-form {
     display: block;
 }
