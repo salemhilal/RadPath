@@ -205,9 +205,8 @@ app.controller('RequestFeedbackController', function($scope) {
 
 })();
 
-function addNotes(){
-	console.log("this: ", $(this));
-	$($(this).siblings()[0]).css('display', 'inline-block');
-	$(this).parent().css('height', '100');
-	$($(this).siblings()[0]).focus();
+function addNotes(id){
+	$("#notes-"+id + " textarea").css('display', 'inline-block');
+	$("#notes-"+id).css('height', '100');
+	$("#notes-"+id + " textarea").focus();
 }
