@@ -1,6 +1,6 @@
 (function(){
 
-var SECONDS_BEFORE_FEEDBACK = 15;
+var SECONDS_BEFORE_FEEDBACK = 3;
 var app = angular.module('radpath', []);
 
 
@@ -187,6 +187,7 @@ app.controller('RadPathController', function($scope) {
 	// Shows a followup case in detail
 	$scope.showCaseDetail = function(patient) {
 		$scope.detailCase = patient;
+		patient.seen = true;
 		$scope.detail = true;
 	};
 
