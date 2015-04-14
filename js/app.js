@@ -196,6 +196,9 @@ app.controller('RadPathController', function($scope) {
 		$scope.detail = false;
 	};
 
+	$scope.findObjs = findObjs;
+	$scope.findObj = findObj;
+
 	// Forgive me Lord, I know not what I'm doing.
 	var that = this;
 	var checkForStella = setInterval(function() {

@@ -21,6 +21,7 @@ function findObjs(attr, value, array) {
 	var result = array.filter(function(obj) {
 	  return obj[attr] == value;
 	});
+	console.log("We found this result", result);
 	if (result.length > 0) {
 		return result;
 	}
