@@ -42,7 +42,7 @@
                   </tr>
                   <tr ng-repeat="patient in radpath.patients|worklist" class="worklist_cell" ng-right-click="radpath.showContextMenu($event, patient.id)" id="patient_{{patient.id}}">
                     <td>{{patient.last_name}}, {{patient.first_name}}<div>{{patient.reports[patient.reports.length-1].procedure}}</div></td>
-                    <td>#JS0490FNN3Z0<div>{{patient.reports[patient.reports.length-1].fd_cui}}</div></td> 
+                    <td>#{{patient.reports[patient.reports.length-1].id}}<div>{{patient.reports[patient.reports.length-1].fd_cui}}</div></td> 
                     <td>{{patient.reports[patient.reports.length-1].date}}</td>
                     <td>(completed)</td>
                     <td>TELEMED</td>
@@ -168,25 +168,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
                             <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
-                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].findings}}</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
@@ -197,25 +197,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObjs('type', 'path', patient.reports)[0].procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">Biopsy Summary</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
-                            <p class="status_type">Radiology Report</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
@@ -226,25 +226,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObjs('type', 'path', patient.reports)[0].procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">Biopsy Summary</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
-                            <p class="status_type">Radiology Report</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
@@ -255,25 +255,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObjs('type', 'path', patient.reports)[0].procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">Biopsy Summary</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
-                            <p class="status_type">Radiology Report</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
@@ -284,25 +284,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObjs('type', 'path', patient.reports)[0].procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">Biopsy Summary</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
-                            <p class="status_type">Radiology Report</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
@@ -313,25 +313,25 @@
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
                             <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
-                            <p>#JS0490FNN3Z0<br/>Primary: Dr. {{patient.physician}}</p>
+                            <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
                         <div class="cell_section_2">
-                            <p class="completed">{{findObjs('type', 'path', patient.reports)[0].procedure}} Completed<br><span>8/12/15</span></p>
+                            <p class="completed">{{findObj('type', 'path', patient.reports).procedure}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
-                                <li class='pending'><span>pending pathology</span></li>
-                                <li><span>radiology report complete</span></li>
-                                <li><span>mammogram complete</span></li>
+                                <li ng-show="patient.requested_feedback != []" class='pending'><span>Pending feedback</span></li>
+                                <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
+                                <li ng-repeat="r in findObjs('type', 'rad', patient.report)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
                         </div>
 
                         <div class="cell_section_3">
-                            <p class="status_type">Biopsy Summary</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'path', patient.reports)[0].procedure}} Summary</p>
+                            <p class="normal">{{findObjs('type', 'path', patient.reports)[0].findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
                         </div>
 
                         <div class="cell_section_4">
-                            <p class="status_type">Radiology Report</p>
-                            <p class="normal">lorem ipsum dolor sit amet, consectetur ad isp cing elit , sed do eisumod temport innci dent ut laobore.</p>
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
                     </div>
                 </div>
