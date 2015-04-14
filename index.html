@@ -188,10 +188,10 @@
                             <div class="jewel">L : 4</div>
                         </div>
                     </div>
-                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell" ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -217,10 +217,10 @@
 
                 <!-- All Pending -->
                 <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
-                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell" ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | pending" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -246,10 +246,10 @@
 
                 <!-- Starred -->
                 <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell" ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | starred" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -275,10 +275,10 @@
 
                 <!-- Pending Pathology -->
                 <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
-                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell" ng-click="showCaseDetail(patient)">
+                     <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -304,10 +304,10 @@
 
                 <!-- Pending Radiology -->
                 <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -333,10 +333,10 @@
 
                 <!-- Archived -->
                 <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
-                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell" ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>
-                            <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
+                            <h2 ng-click="showCaseDetail(patient)">{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding</p>
                         </div>
                         <div class="cell_section_2">
@@ -371,7 +371,7 @@
                         <div class="report-body">
                             <div class="left-col">
                                 <div class="cell_section_1">
-                                    <div class="cell_star"></div>
+                                    <div class="cell_star" ng-class="{starred:detailCase.star}" ng-click="radpath.toggleStar(detailCase.id)"></div>
                                     <h2>{{detailCase.last_name}}, {{detailCase.first_name}}</h2>
                                     <p>#JS0490FNN3Z0<br/>Primary: Dr. Sarah Golding<br/>DOB: 11/13/75</p>
                                 </div>
