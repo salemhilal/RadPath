@@ -28,6 +28,24 @@
                 WORKLIST TAB
             ****************************-->
             <div id="worklist" ng-show="tab === 1" ng-click="radpath.hideContextMenues()">
+
+                <table cellpadding="10" style="width:100%">
+                  <tr>
+                    <th>Patient Name</th>
+                    <th>Med Rec No</th> 
+                    <th>Study Date</th>
+                    <th>Exam Status</th>
+                    <th>Exam Loc.</th>
+                  </tr>
+                  <tr ng-repeat="patient in radpath.patients|worklist" class="worklist_cell" ng-right-click="radpath.showContextMenu($event, patient.id)" id="patient_{{patient.id}}">
+                    <td>{{patient.last_name}}, {{patient.first_name}}<div>{{patient.reports[patient.reports.length-1].procedure}}</div></td>
+                    <td>#JS0490FNN3Z0<div>{{patient.reports[patient.reports.length-1].fd_cui}}</div></td> 
+                    <td>{{patient.reports[patient.reports.length-1].date}}</td>
+                    <td>(completed)</td>
+                    <td>TELEMED</td>
+                  </tr>
+    
+                </table>
                 <div ng-repeat="patient in radpath.patients|worklist" class="overview_cell" ng-right-click="radpath.showContextMenu($event, patient.id)">
                     <div class="cell_section_1">
                         <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id)"></div>

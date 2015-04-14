@@ -90,6 +90,7 @@ app.controller('RadPathController', function(){
 	};
 
 	this.showContextMenu = function($event, id) {
+		$('#worklist table tr').removeClass('context-open');
 		console.log('right click on ' + id);
 		console.log('$event', $event);
 		$('.small-followup-form')
@@ -98,9 +99,11 @@ app.controller('RadPathController', function(){
 				.css({'top': $event.clientY, 'left': $event.clientX })
 				.show();
 			});
+		$('#patient_'+id).addClass('context-open');
 	};
 
 	this.hideContextMenues = function() {
+		$('#worklist table tr').removeClass('context-open');
 		$('.small-followup-form').fadeOut(100);
 	};
 });

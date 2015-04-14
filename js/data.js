@@ -27,7 +27,7 @@ var data = {
 				{
 					id: 21325232,
 					type: 'path',
-					date: '1/7/14',
+					date: '1/7/2014',
 					diagnosis: 'Infiltrating Ductal Carcinoma',
 					fd_cui: 'C1134719',
 					location: 'Right Breast',
