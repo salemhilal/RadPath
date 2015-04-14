@@ -337,7 +337,7 @@
                 </div>
 
                 <!-- Detail View -->
-                <div class="fu_container" id="detail_fu" ng-show="detail == true">
+                <div class="fu_container" id="detail_fu" ng-show="detail == true" ng-click="detailForm = false">
                     <section class="report timeline">
                         <div class="report-header">
                             <div>Patient</div>
@@ -377,9 +377,9 @@
                             <div class="left-col">
                             Findings:
                                 <div class="jewel" ng-show="report.LBIRAD || report.RBIRAD">
-                                    L : {{report.LBIRAD}}, R : {{report.RBIRAD}}
+                                    L : {{report.LBIRAD}}<br>R : {{report.RBIRAD}}
                                 </div>
-                                <div class="jewel" ng-show="report.classification">{{report.classification}}</div>
+                                <div class="jewel path-jewel" ng-show="report.classification">{{report.classification}}</div>
                             <p class="report-id">CHJ764</p>
                             <p>{{doctorDisplay(report)}}</p>
                             </div>
