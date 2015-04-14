@@ -40,6 +40,28 @@ app.filter('seen', function() {
 	};
 });
 
+// New Follow Up filter for unseen feedback
+app.filter('newfollowup', function() {
+	return function (patients) {
+		return patients.filter(function (patient) {
+			return 	patient.requested_feedback &&
+					patient.requested_feedback.is_fulfilled &&
+					!patient.seen;
+		});
+	};
+});
+
+// Archive, i.e. everything with feedback that isn't in New Follow Up
+app.filter('archive', function() {
+	return function (patients) {
+		return patients.filter(function (patient) {
+			return 	patient.requested_feedback &&
+					patient.requested_feedback.is_fulfilled &&
+					patient.seen;
+		});
+	};
+});
+
 // Determine if a patient is in the worklist.
 app.filter('worklist', function() {
 	return function(patients) {
@@ -121,10 +143,12 @@ Because they're cool and generally a good time.
 
 // Main controller
 app.controller('RadPathController', function($scope) {
-	this.patients = data.patients;
-	this.radiologists = data.radiologists;
-	this.pathologists = data.pathologists;
-	this.caseTypes = data.caseTypes;
+	this.patients = data.patients; 			// List of patients
+	this.radiologists = data.radiologists;	// List of radiologists
+	this.pathologists = data.pathologists;	// List of Pathologists
+
+	$scope.detailCase = {};					// Currently active detailed case
+	$scope.detail = false;					// Detail mode toggle
 
 	this.getRadiologist = function(id) {
 		var r = findObj('id', id, this.radiologists);
@@ -156,6 +180,15 @@ app.controller('RadPathController', function($scope) {
 	$scope.hideContextMenues = function() {
 		$('#worklist table tr').removeClass('context-open');
 		$('.context-menu').fadeOut(100);
+	};
+
+	$scope.showCaseDetail = function(patient) {
+		$scope.detailCase = patient;
+		$scope.detail = true;
+	};
+
+	$scope.hideCaseDetail = function() {
+		$scope.detail = false;
 	};
 });
 
