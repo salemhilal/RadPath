@@ -94,9 +94,9 @@ app.controller('RadPathController', function() {
 		$('#worklist table tr').removeClass('context-open');
 		console.log('right click on ' + id);
 		console.log('$event', $event);
-		$('.small-followup-form')
+		$('.context-menu')
 			.fadeOut(100, function() {
-				$('.small-followup-form.form-' + id)
+				$('.context-menu.menu-' + id)
 				.css({'top': $event.clientY, 'left': $event.clientX })
 				.show();
 			});
@@ -105,7 +105,7 @@ app.controller('RadPathController', function() {
 
 	this.hideContextMenues = function() {
 		$('#worklist table tr').removeClass('context-open');
-		$('.small-followup-form').fadeOut(100);
+		$('.context-menu').fadeOut(100);
 	};
 });
 
