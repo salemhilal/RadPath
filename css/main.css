@@ -482,6 +482,7 @@ p,
     top: 87px;
     left: initial;
     position: fixed;
+    display: block;
 }
 .rfu-item:hover .small-followup-form {
     display: block;

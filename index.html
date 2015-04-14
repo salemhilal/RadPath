@@ -13,7 +13,7 @@
     <body ng-controller="RadPathController as radpath">
 
         <!-- Add your site or application content here -->
-        <div id="container" ng-init="tab = 2">
+        <div id="container" ng-init="tab = 1">
             <ul id="main-tabs">
                 <li ng-class="{ active:tab === 1}" ng-click="tab = 1">Worklist</li>
                 <li>My Saved Cases</li>
@@ -158,7 +158,7 @@
                 <!-- Back to list from detail view -->
                 <div class="fu_header fu_header_detail" ng-show="detail == true">
                     <a href="#" ng-click="hideCaseDetail()">&#60; Back to List</a>
-                    <div class="continue-followup">Continue Follow Up</div>
+                    <div class="continue-followup" ng-click="detailForm = !detailForm">Continue Follow Up</div>
                 </div>
 
 
@@ -392,7 +392,7 @@
                             </div>
                         </div>
                     </section>
-                    <div class="small-followup-form detail-page-form" >
+                    <div class="small-followup-form detail-page-form" ng-show="detailForm == true">
                             <form name="requestFeedbackForm" ng-controller="RequestFeedbackController as requestFeedbackCtrl" ng-submit="requestFeedback(detailCase)" ng-click="$event.stopPropagation()">
                                 <div class="requestFeedbackInput">
                                     <div>Any Radiology Report</div>
@@ -434,7 +434,7 @@
                                 </div>
                                 <hr>
                                 <div class="requestFeedbackInput">
-                                    <input type='submit' value='Request Follow Up'>
+                                    <input type='submit' value='Request Follow Up' ng-click="detailForm = false">
                                 </div>
                             </form>
                         </div>

@@ -146,6 +146,8 @@ app.controller('RadPathController', function($scope) {
 
 	$scope.detailCase = {};					// Currently active detailed case
 	$scope.detail = false;					// Detail mode toggle
+	$scope.detailForm = false;				// Display or hide the detail form
+
 	var that = this;						// Def not the angular way
 
 	// Given an ID, gets a radiologist.
