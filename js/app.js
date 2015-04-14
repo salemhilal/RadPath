@@ -68,17 +68,18 @@ app.directive('ngRightClick', function($parse) {
 });
 
 // Main controller
-app.controller('RadPathController', function(){
+app.controller('RadPathController', function() {
 	this.patients = data.patients;
 	this.radiologists = data.radiologists;
 	this.pathologists = data.pathologists;
+	this.caseTypes = data.caseTypes;
 
 	this.getRadiologist = function(id){
 		var r = findObj('id', id, this.radiologists);
 		return r.first_name + ' ' + r.last_name;
 	};
 
-	this.getPathologist = function(id){
+	this.getPathologist = function(id) {
 		var p = findObj('id', id, this.pathologists);
 		return p.first_name + ' ' + p.last_name;
 	};
@@ -105,7 +106,7 @@ app.controller('RadPathController', function(){
 	};
 });
 
-app.controller('RequestFeedbackController', function(){
+app.controller('RequestFeedbackController', function() {
 	this.feedbackRequest = {};
 
 	this.requestFeedback = function(patient) {
