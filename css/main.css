@@ -276,7 +276,7 @@ findings: 295px;
     left: 210px;
     font-size: 12px;
     padding: 8px 11px 8px 11px;
-    width: 88px;
+    width: 55px;
     position: absolute;
 }
 
@@ -288,7 +288,7 @@ findings: 295px;
     color: #F7941E;
     padding:11px 14px 11px 14px;
     font-weight: 600;
-    width: 62px;
+    width: 88px;
     text-align: center;
 }
 
@@ -320,6 +320,7 @@ findings: 295px;
     position: relative;
     min-width: 1000px;
     border-bottom: solid 2px #1A2028;
+    overflow: hidden;
 }
 
 p,
@@ -414,7 +415,7 @@ p,
 
 .cell_section_3 .normal,
 .cell_section_4 .normal {
-    margin-top:10px;
+    margin-top:25px;
 }
 
 .cell_section_4 {
