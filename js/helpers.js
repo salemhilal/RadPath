@@ -28,3 +28,22 @@ function findObjs(attr, value, array) {
 		return false;
 	}
 }
+
+
+function displayMessage(text) {
+	var msg = document.createElement('div');
+	msg.id = 'display-message';
+	msg.textContent = text;
+	document.body.appendChild(msg);
+	$('#display-message').animate({
+			opacity:1
+		}, 300);
+
+	setTimeout(function(){
+		// fade out message box after 3 seconds
+		$('#display-message').animate({
+			opacity:0
+		}, 300);
+	}, 3000);
+
+}

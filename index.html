@@ -148,9 +148,9 @@
                 <!-- Headers -->
                 <div class="fu_header" ng-show="detail == false">
                     <div>Patient Information</div>
-                    <div>Status</div>
-                    <div>Latest Findings</div>
                     <div>Your Report</div>
+                    <div>Latest Findings</div>
+                    <div>Status</div>
                 </div>
 
                 <!-- Back to list from detail view -->
@@ -168,6 +168,15 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
+                        
+                        <div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div>
                         <div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
@@ -175,16 +184,6 @@
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
                                 <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
-                        </div>
-
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
 
                         <div class="button-container">
@@ -203,23 +202,21 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        <div class="cell_section_2">
+                        
+                        <div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div><div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
                                 <li ng-repeat="r in findObjs('type', 'path', patient.reports)"><span>{{r.procedure}} report complete</span></li>
                                 <li ng-repeat="r in findObjs('type', 'rad', patient.reports)"><span>{{r.exam_type}} complete</span></li>
                             </ul>
-                        </div>
-
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
                         </div>
 
                         <div class="button-container">
@@ -238,6 +235,16 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
+                        
+<div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div>
+
                         <div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
@@ -247,15 +254,7 @@
                             </ul>
                         </div>
 
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
-                        </div>
+                        
 
                         <div class="button-container">
                             <div class="cell-button">Mark as Read</div>
@@ -273,7 +272,15 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        <div class="cell_section_2">
+                        
+<div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div><div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
@@ -282,15 +289,7 @@
                             </ul>
                         </div>
 
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
-                        </div>
+                        
 
                         <div class="button-container">
                             <div class="cell-button">Mark as Read</div>
@@ -308,7 +307,15 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        <div class="cell_section_2">
+                        
+<div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div><div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
@@ -317,15 +324,7 @@
                             </ul>
                         </div>
 
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
-                        </div>
+                        
 
                         <div class="button-container">
                             <div class="cell-button">Mark as Read</div>
@@ -343,7 +342,15 @@
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        <div class="cell_section_2">
+                        
+<div class="cell_section_4">
+                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
+                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
+                        </div>
+                        <div class="cell_section_3">
+                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
+                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
+                        </div><div class="cell_section_2">
                             <p class="completed">{{patient.reports[patient.reports.length - 1].procedure || patient.reports[patient.reports.length - 1].exam_type}} Completed<br><span>{{findObj('type', 'path', patient.reports).date}}</span></p>
                             <ul class="normal">
                                 <li ng-show="!patient.requested_feedback.is_fulfilled" class='pending'><span>Pending feedback</span></li>
@@ -352,15 +359,7 @@
                             </ul>
                         </div>
 
-                        <div class="cell_section_3">
-                            <p class="status_type">{{last(patient.reports).procedure || last(patient.reports).exam_type}} Summary</p>
-                            <p class="normal">{{last(patient.reports).findings}}</p><div class="jewel path-jewel">{{findObjs('type', 'path', patient.reports)[0].classification}}</div>
-                        </div>
-
-                        <div class="cell_section_4">
-                            <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
-                            <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}<br>{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
-                        </div>
+                        
 
                         <div class="button-container">
                             <div class="cell-button">Mark as Read</div>

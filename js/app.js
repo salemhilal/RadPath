@@ -264,6 +264,7 @@ app.controller('RequestFeedbackController', function($scope) {
 		newRequest.date = new Date();
 		patient.requested_feedback = newRequest;
 		console.log("new patient", patient);
+		displayMessage("Feedback Requested Successfully");
 	};
 });
 

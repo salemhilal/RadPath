@@ -240,7 +240,7 @@ findings: 295px;
 
 .fu_header div {
     display: block;
-    width: 200px;
+    width: 200px !important;
     float: left;
 }
 
@@ -252,7 +252,7 @@ findings: 295px;
     padding-left:28px;
 }
 
-.fu_header div:nth-child(2),
+.fu_header div:nth-child(4),
 .cell_section_2 {
     width: 186px;
 }
@@ -264,7 +264,7 @@ findings: 295px;
 }
 
 .fu_header div:nth-child(3),
-.fu_header div:nth-child(4),
+.fu_header div:nth-child(2),
 .cell_section_3,
 .cell_section_4 {
     width: 295px;
@@ -766,5 +766,21 @@ p.report-id {
   color: white;
   margin-right: -55px;
   cursor: pointer;
+}
+
+#display-message {
+  opacity: 0;
+  position: fixed;
+  z-index: 10000000;
+  width: 320px;
+  top: 39px;
+  text-align: center;
+  left: calc(50% - 160px);
+  color: #2BB673;
+  padding: 10px;
+  background: rgba(51, 60, 78, 1);
+  box-shadow: 1px 1px 3px #000;
+  font-size: 13px;
+  border: solid 1px;
 }
 
