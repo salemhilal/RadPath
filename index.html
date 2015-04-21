@@ -163,7 +163,7 @@
                 <!-- New Follow-up -->
                 <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
                     <div ng-show="(radpath.patients | newfollowup).length==0" class="no-results">No New Follow Up</div>
-                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell"  ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell" ng-class="{read:patient.read}"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
@@ -336,7 +336,7 @@
                 <!-- Archived -->
                 <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
                     <div ng-show="(radpath.patients | archive).length==0" class="no-results">No Archived Follow Up</div>
-                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell"  ng-click="showCaseDetail(patient)">
+                    <div ng-repeat="patient in radpath.patients | archive" class="overview_cell" ng-class="{read:patient.read}"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
