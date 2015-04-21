@@ -181,6 +181,11 @@ app.controller('RadPathController', function($scope) {
 		$('#patient_'+id).addClass('context-open');
 	};
 
+	this.archive = function(patient) {
+		console.log("archive", patient);
+		patient.seen = true;
+	};
+
 	// Hides any visable context menus (hopefully just one).
 	$scope.hideContextMenues = function() {
 		$('#worklist table tr').removeClass('context-open');
