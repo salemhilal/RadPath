@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body ng-controller="RadPathController as radpath">
+    <body ng-controller="RadPathController as radpath"  ng-click="hideContextMenues()">
 
         <!-- Add your site or application content here -->
         <div id="container" ng-init="tab = 1">
@@ -30,12 +30,12 @@
             <!--****************************
                 WORKLIST TAB
             ****************************-->
-            <div id="worklist" ng-show="tab === 1" ng-click="hideContextMenues()">
+            <div id="worklist" ng-show="tab === 1">
 
                 <table cellpadding="10" style="width:100%">
                   <tr>
                     <th>Patient Name</th>
-                    <th>Med Rec No</th> 
+                    <th>Med Rec No</th>
                     <th>Study Date</th>
                     <th>Exam Status</th>
                     <th>Exam Loc.</th>
@@ -161,14 +161,14 @@
 
 
                 <!-- New Follow-up -->
-                <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="new_fu" ng-show="fu_tab === 1 && detail === false">
                     <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
                         <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -187,22 +187,23 @@
                         </div>
 
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient); $event.stopPropagation();" ng-show="!patient.read">Mark as Read</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient, true); $event.stopPropagation();" ng-show="patient.read">Mark as Unread</div>
                             <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- All Pending -->
-                <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
                     <div ng-repeat="patient in radpath.patients | pending" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
                         <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -220,22 +221,20 @@
                         </div>
 
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
-                            <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Starred -->
-                <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
                     <div ng-repeat="patient in radpath.patients | starred" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
 <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -254,25 +253,23 @@
                             </ul>
                         </div>
 
-                        
+
 
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
-                            <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pending Pathology -->
-                <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
                      <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
 <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -289,25 +286,21 @@
                             </ul>
                         </div>
 
-                        
-
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
-                            <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pending Radiology -->
-                <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
                     <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
 <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -324,25 +317,21 @@
                             </ul>
                         </div>
 
-                        
-
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
-                            <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Archived -->
-                <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
                     <div ng-repeat="patient in radpath.patients | archive" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
                             <h2>{{patient.last_name}}, {{patient.first_name}}</h2>
                             <p>#{{patient.reports[patient.reports.length-1].id}}<br/>Primary: Dr. {{patient.physician}}</p>
                         </div>
-                        
+
 <div class="cell_section_4">
                             <p class="status_type">{{findObjs('type', 'rad', patient.reports)[0].exam_type}} Report</p>
                             <p class="normal">{{findObjs('type', 'rad', patient.reports)[0].recommend}}{{findObjs('type', 'rad', patient.reports)[0].findings}}</p><div class="jewel">L : {{findObjs('type', 'rad', patient.reports)[0].LBIRAD}}</div>
@@ -359,18 +348,18 @@
                             </ul>
                         </div>
 
-                        
 
                         <div class="button-container">
-                            <div class="cell-button">Mark as Read</div>
-                            <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
-                            <div class="cell-button">Send to Colleague</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient); $event.stopPropagation();" ng-show="!patient.read">Mark as Read</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient, true); $event.stopPropagation();" ng-show="patient.read">Mark as Unread</div>
+                            <div class="cell-button" ng-click="radpath.archive(patient, true); $event.stopPropagation();">Unarchive</div>
+                            <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Detail View -->
-                <div class="fu_container" id="detail_fu" ng-show="detail == true" ng-click="detailForm = false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="detail_fu" ng-show="detail == true" ng-click="detailForm = false">
                     <section class="report timeline">
                         <div class="report-header">
                             <div>Patient</div>
