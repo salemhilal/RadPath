@@ -46,7 +46,7 @@
                     <td>{{patient.reports[patient.reports.length-1].date}}</td>
                     <td>(completed)</td>
                     <td>TELEMED</td>
-                    <td><div class="context-menu menu-{{patient.id}}">
+                    <td><div class="context-menu menu-{{patient.id}}" ng-right-click="$event.stopPropagation();">
                         <div class="menu-item">Take Control</div>
                         <hr>
                         <div class="menu-item">View Only</div>
@@ -90,8 +90,8 @@
                                 </div>
                                 <hr>
                                 <div class="requestFeedbackInput" id="notes-{{patient.id}}">
-                                    <div onclick="addNotes()">Add Notes to Follow Up</div>
-                                    <textarea rows="4" cols="27"></textarea>
+                                    <div ng-click="addNotes()" ng-show="!showNotes">Add Notes to Follow Up</div>
+                                    <textarea rows="4" cols="27" ng-show="showNotes" ng-model="feedbackRequest.notes"></textarea>
                                 </div>
                                 <div class="requestFeedbackInput">
                                     <div>Send to Colleague</div>
@@ -388,6 +388,18 @@
                             </div>
                         </div>
                     </section>
+                    <section class="report" ng-show="detailCase.notes">
+                        <div class="report-header">
+                            <div>Case notes</div>
+                        </div>
+                        <div class="report-body">
+                            <textarea ng-model="detailCase.notes">
+                            {{detailCase.notes}}
+                            </textarea>
+                        </div>
+                    </section>
+
+                    </section>
 
                     <section ng-repeat="report in detailCase.reports" class="report rad-report">
                         <div class="report-header">
@@ -447,9 +459,9 @@
                                     <input type="checkbox" value="six_month" ng-model="feedbackRequest.type.six_month">
                                 </div>
                                 <hr>
-                                <div class="requestFeedbackInput" id="notes-{{patient.id}}">
-                                    <div onclick="addNotes()">Add Notes to Follow Up</div>
-                                    <textarea rows="4" cols="27"></textarea>
+                                 <div class="requestFeedbackInput" id="notes-{{patient.id}}">
+                                    <div ng-click="addNotes()" ng-show="!showNotes">Add Notes to Follow Up</div>
+                                    <textarea rows="4" cols="27" ng-show="showNotes" ng-model="feedbackRequest.notes"></textarea>
                                 </div>
                                 <div class="requestFeedbackInput">
                                     <div>Send to Colleague</div>

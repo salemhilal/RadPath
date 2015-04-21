@@ -1,6 +1,6 @@
 (function(){
 
-var SECONDS_BEFORE_FEEDBACK = 2;
+var SECONDS_BEFORE_FEEDBACK = 20;
 var app = angular.module('radpath', []);
 
 
@@ -171,7 +171,6 @@ app.controller('RadPathController', function($scope) {
 	// Shows a context menu for a worklist case.
 	this.showContextMenu = function($event, id) {
 		$('#worklist table tr').removeClass('context-open');
-		console.log('right click on ' + id);
 		$('.context-menu')
 			.fadeOut(100, function() {
 				$('.context-menu.menu-' + id)
@@ -254,7 +253,6 @@ app.controller('RadPathController', function($scope) {
 					stella.read = false;
 					stella.feedback.push(newCase);
 					stella.reports.push(newCase);
-					console.log("comin atchu");
 				});
 
 			}, SECONDS_BEFORE_FEEDBACK * 1000);
@@ -264,25 +262,25 @@ app.controller('RadPathController', function($scope) {
 
 app.controller('RequestFeedbackController', function($scope) {
 	$scope.feedbackRequest = {};
+	$scope.showNotes = false;
 
 	$scope.requestFeedback = function(patient) {
 		this.hideContextMenues();
 		var newRequest = $scope.feedbackRequest;
 		console.log('newRequest', newRequest);
+		patient.notes = newRequest.notes;
 		newRequest.is_fulfilled = false;
 		newRequest.date = new Date();
 		patient.requested_feedback = newRequest;
 		console.log("new patient", patient);
 		displayMessage("Feedback Requested Successfully");
 	};
-});
 
-// $('.addNotes').click(function(){addNotes()});
+	$scope.addNotes = function(){
+		$scope.showNotes = !$scope.showNotes;
+	};
+});
 
 })();
 
-function addNotes(id){
-	$("#notes-"+id + " textarea").css('display', 'inline-block');
-	$("#notes-"+id).css('height', '100');
-	$("#notes-"+id + " textarea").focus();
-}
+
