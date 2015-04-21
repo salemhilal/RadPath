@@ -302,7 +302,7 @@
 
                 <!-- Pending Radiology -->
                 <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
-                    <div ng-show="(radpath.patients | pendingRad | pendingRad).length==0" class="no-results">No Pending Radiology Reports</div>
+                    <div ng-show="(radpath.patients | pending | pendingRad).length==0" class="no-results">No Pending Radiology Reports</div>
                     <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
 
                         <div class="cell_section_1">
