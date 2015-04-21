@@ -61,7 +61,7 @@ ul#main-tabs {
   display: block;
   width: 20px;
   top: 18px;
-  left: 744px;
+  left: 595px;
   height: 20px;
   line-height: 20px;
   font-size: 14px;
@@ -455,14 +455,18 @@ p,
 
 .cell_section_1 h2 {
       margin: -4px 0 0 0;
-      font-weight: 300;
       color: white;
       font-size: 22px;
+      font-weight: 500;
 }
 
 .cell_section_1 h2:hover {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     cursor: pointer;
+}
+
+.overview_cell.read .cell_section_1 h2 {
+    font-weight: 100;
 }
 
 .cell_section_1 p {
@@ -818,4 +822,17 @@ p.report-id {
   box-shadow: 1px 1px 3px #000;
   font-size: 13px;
   border: solid 1px;
+}
+
+.report-body textarea {
+  background-color: #5E697B;
+  border: solid 1px #212936;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.report-body textarea:focus {
+    outline: 0;
 }
