@@ -86,6 +86,7 @@ ul#main-tabs {
 
 #worklist table {
     height: 100%;
+    border-collapse: collapse
     /* margin-top: 75px; */
 }
 
@@ -97,6 +98,7 @@ ul#main-tabs {
 
 #worklist table tr {
     font-size: 14px;
+    border-bottom: solid 2px rgb(29, 35, 45);
 }
 
 .context-open {
@@ -193,7 +195,7 @@ ul#followup-tabs li:hover {
     top: 45px;
     left: 182px;
     min-width: 1182px;
-    width: calc(100% - 200px);
+    width: calc(100% - 220px);
     background: #333C4E;
     height: 30px;
     padding-left: 20px;
