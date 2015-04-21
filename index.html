@@ -161,7 +161,7 @@
 
 
                 <!-- New Follow-up -->
-                <div class="fu_container" id="new_fu" ng-show="fu_tab === 1 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="new_fu" ng-show="fu_tab === 1 && detail === false">
                     <div ng-repeat="patient in radpath.patients | newfollowup" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -196,7 +196,7 @@
                 </div>
 
                 <!-- All Pending -->
-                <div class="fu_container" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_fu" ng-show="fu_tab === 2  && detail === false">
                     <div ng-repeat="patient in radpath.patients | pending" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -227,7 +227,7 @@
                 </div>
 
                 <!-- Starred -->
-                <div class="fu_container" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="starred_fu" ng-show="fu_tab === 3 && detail === false">
                     <div ng-repeat="patient in radpath.patients | starred" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -262,7 +262,7 @@
                 </div>
 
                 <!-- Pending Pathology -->
-                <div class="fu_container" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_path_fu" ng-show="fu_tab === 4 && detail === false">
                      <div ng-repeat="patient in radpath.patients | pending | pendingPath" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -293,7 +293,7 @@
                 </div>
 
                 <!-- Pending Radiology -->
-                <div class="fu_container" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="pending_rad_fu" ng-show="fu_tab === 5 && detail === false">
                     <div ng-repeat="patient in radpath.patients | pending | pendingRad" class="overview_cell" ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -324,7 +324,7 @@
                 </div>
 
                 <!-- Archived -->
-                <div class="fu_container" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="archive_fu" ng-show="fu_tab === 6 && detail === false">
                     <div ng-repeat="patient in radpath.patients | archive" class="overview_cell"  ng-click="showCaseDetail(patient)">
                         <div class="cell_section_1">
                             <div class="cell_star" ng-class="{starred:patient.star}" ng-click="radpath.toggleStar(patient.id); $event.stopPropagation();"></div>
@@ -359,7 +359,7 @@
                 </div>
 
                 <!-- Detail View -->
-                <div class="fu_container" id="detail_fu" ng-show="detail == true" ng-click="detailForm = false">
+                <div class="fu_container" ng-class="{read:patient.read}" id="detail_fu" ng-show="detail == true" ng-click="detailForm = false">
                     <section class="report timeline">
                         <div class="report-header">
                             <div>Patient</div>
