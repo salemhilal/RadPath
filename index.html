@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body ng-controller="RadPathController as radpath"  ng-click="hideContextMenues()">
+    <body ng-controller="RadPathController as radpath"  ng-click="hideContextMenues()" ng-right-click="$event.stopPropagation()">
 
         <!-- Add your site or application content here -->
         <div id="container" ng-init="tab = 1">
@@ -388,7 +388,7 @@
                             </div>
                         </div>
                     </section>
-                    <section class="report" ng-show="detailCase.notes">
+                    <section class="report">
                         <div class="report-header">
                             <div>Case notes</div>
                         </div>
