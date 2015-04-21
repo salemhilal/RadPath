@@ -370,7 +370,7 @@ findings: 295px;
 
 .fu_container {
     width: calc(100% - 200px);
-    height: calc(100% - 118px);
+    /*min-height: calc(100% - 118px);*/
     display: block;
     position: absolute;
     top: 118px;
@@ -660,6 +660,10 @@ section.report.timeline .report-body {
     height: 150px;
     padding-top:10px;
     padding-left: 0px;
+}
+
+section.report.notes .report-body {
+    height: auto;
 }
 
 section.report.path-report {
