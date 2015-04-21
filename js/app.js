@@ -209,7 +209,7 @@ app.controller('RadPathController', function($scope) {
 
 	$scope.last = function(arr) {
 		return arr[arr.length - 1];
-	}
+	};
 
 	$scope.findObjs = findObjs;
 	$scope.findObj = findObj;
@@ -243,6 +243,7 @@ app.controller('RadPathController', function($scope) {
 
 					stella.requested_feedback.is_fulfilled = true;
 					stella.seen = false;
+					stella.read = false;
 					stella.feedback.push(newCase);
 					stella.reports.push(newCase);
 					console.log("comin atchu");
