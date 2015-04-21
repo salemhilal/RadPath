@@ -186,8 +186,8 @@ app.controller('RadPathController', function($scope) {
 		patient.seen = !unarchive;
 	};
 
-	this.markRead = function(patient) {
-		patient.read = true;
+	this.markRead = function(patient, unread) {
+		patient.read = !unread;
 	};
 
 	// Hides any visable context menus (hopefully just one).

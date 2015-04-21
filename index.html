@@ -188,6 +188,7 @@
 
                         <div class="button-container">
                             <div class="cell-button" ng-click="radpath.markRead(patient); $event.stopPropagation();" ng-show="!patient.read">Mark as Read</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient, true); $event.stopPropagation();" ng-show="patient.read">Mark as Unread</div>
                             <div class="cell-button" ng-click="radpath.archive(patient); $event.stopPropagation();">Archive</div>
                             <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
@@ -350,6 +351,7 @@
 
                         <div class="button-container">
                             <div class="cell-button" ng-click="radpath.markRead(patient); $event.stopPropagation();" ng-show="!patient.read">Mark as Read</div>
+                            <div class="cell-button" ng-click="radpath.markRead(patient, true); $event.stopPropagation();" ng-show="patient.read">Mark as Unread</div>
                             <div class="cell-button" ng-click="radpath.archive(patient, true); $event.stopPropagation();">Unarchive</div>
                             <div class="cell-button" ng-click="$event.stopPropagation();">Send to Colleague</div>
                         </div>
