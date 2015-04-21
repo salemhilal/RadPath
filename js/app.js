@@ -1,6 +1,6 @@
 (function(){
 
-var SECONDS_BEFORE_FEEDBACK = 20;
+var SECONDS_BEFORE_FEEDBACK = 2;
 var app = angular.module('radpath', []);
 
 
@@ -181,9 +181,13 @@ app.controller('RadPathController', function($scope) {
 		$('#patient_'+id).addClass('context-open');
 	};
 
-	this.archive = function(patient) {
-		console.log("archive", patient);
-		patient.seen = true;
+	// Archives the given patient. Unarchives if @unarchive (optional) is true.
+	this.archive = function(patient, unarchive) {
+		patient.seen = !unarchive;
+	};
+
+	this.markRead = function(patient) {
+		patient.read = true;
 	};
 
 	// Hides any visable context menus (hopefully just one).
@@ -195,7 +199,6 @@ app.controller('RadPathController', function($scope) {
 	// Shows a followup case in detail
 	$scope.showCaseDetail = function(patient) {
 		$scope.detailCase = patient;
-		patient.seen = true;
 		$scope.detail = true;
 	};
 
