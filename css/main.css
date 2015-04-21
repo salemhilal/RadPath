@@ -15,7 +15,7 @@ TL2: #788296
 
 /*GLOBAL*/
 html {
-    background-color: #3E4960;
+    background-color: #1D232D;
     color: #788296;
     font-family: "Roboto", Helvetica, sans-serif;
     min-width: 1182px;
@@ -36,7 +36,7 @@ ul#main-tabs {
     display: block;
     line-height: 38px;
     margin: 0 0 0 0;
-    padding: 0 0 0 158px;
+    padding: 0 0 0 7px;
     background: #252B3D;
     position: fixed;
     box-shadow: 1px 1px 5px rgba(0,0,0,.48);
@@ -73,11 +73,20 @@ ul#main-tabs {
 }
 
 #worklist {
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    width: calc(100% - 40px);
+    left: 20px;
+    min-height: 800px;
+    /* overflow: hidden; */
+    position: absolute;
+    top: 124px;
+    /* margin-top: 5px; */
+    background: #3E4960;
 }
 
 #worklist table {
-    margin-top: 50px;
+    height: 100%;
+    /* margin-top: 75px; */
 }
 
 #worklist table th {
@@ -107,15 +116,17 @@ ul#main-tabs {
 
 #main-tabs li.active {
     color: white;
+    /* background: #1D232D; */
 }
 
 #followup {
+    /* margin-top: 6px; */
     width: 100%;
     height: calc(100vh - 100px);
 }
 
 ul#followup-tabs {
-    padding:30px 0 0 0;
+    padding: 30px 0 0 0;
     margin:0;
     width: 182px;
     height: calc(100% - 54px);
@@ -124,7 +135,7 @@ ul#followup-tabs {
     background-color: #1D232D;
     font-size: 12px;
     position: fixed;
-    top:54px;
+    top: 88px;
     border-right: #1A2028 solid 1px;
 }
 
@@ -146,7 +157,10 @@ ul#followup-tabs li span {
 
 ul#followup-tabs li.active {
     color:#BDCCDB;
-    background-color: #13171F;
+    /* background-color: #13171F; */
+    border-left: solid 3px;
+    padding-left: 13px;
+    font-weight: bold;
 }
 
 ul#followup-tabs li:hover {
@@ -159,13 +173,12 @@ ul#followup-tabs li:hover {
     float:left;
 }
 
-.fu_header,
 #worklist table tr:first-child {
     position: fixed;
-    top: 54px;
+    top: 34px;
     left: 182px;
     min-width: 1182px;
-    width: calc(100% - 182px);
+    width: calc(100% - 200px);
     background: #333C4E;
     height: 30px;
     padding-left: 20px;
@@ -175,11 +188,30 @@ ul#followup-tabs li:hover {
     z-index: 100;
 }
 
-#worklist table tr:first-child {
-    left:0px;
+.fu_header {
+    position: fixed;
+    top: 45px;
+    left: 182px;
+    min-width: 1182px;
+    width: calc(100% - 200px);
+    background: #333C4E;
+    height: 30px;
+    padding-left: 20px;
+    line-height: 30px;
     font-size: 12px;
+    border-top: solid 40px rgb(29, 35, 45);
+    box-sizing: content-box;
+    color: #808B9B;
+    z-index: 100;
+}
+
+#worklist table tr:first-child {
+    left: 20px;
+    font-size: 12px;
+    border-top: solid 50px rgb(29, 35, 45);
+    box-sizing: content-box;
     height: 40px;
-    width: 100%;
+    width: calc(100% - 60px);
     line-height: 25px;
 }
 
@@ -240,7 +272,7 @@ findings: 295px;
 
 .fu_header div {
     display: block;
-    width: 200px !important;
+    width: 200px;
     float: left;
 }
 
@@ -335,13 +367,14 @@ findings: 295px;
 }*/
 
 .fu_container {
-    width: calc(100% - 182px);
-    height: calc(100% - 54px);
+    width: calc(100% - 200px);
+    height: calc(100% - 118px);
     display: block;
     position: absolute;
-    top: 84px;
+    top: 118px;
   left: 182px;
     z-index: 50;
+    background: rgb(62, 73, 96);
 }
 
 .overview_cell {
@@ -766,6 +799,7 @@ p.report-id {
   color: white;
   margin-right: -55px;
   cursor: pointer;
+  width: 200px !important;
 }
 
 #display-message {
@@ -783,4 +817,3 @@ p.report-id {
   font-size: 13px;
   border: solid 1px;
 }
-
