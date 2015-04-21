@@ -3,6 +3,7 @@ var data = {
 	patients: [
 		{
 			id: 1,
+			read: false,
 			first_name: 'Stella',
 			last_name: 'Perrot',
 			requested_feedback: [],
@@ -28,6 +29,7 @@ var data = {
 		},
 		{
 			id: 2,
+			read: false,
 			first_name: 'Kayla',
 			last_name: 'Patel',
 			requested_feedback: {
@@ -83,6 +85,7 @@ var data = {
 		},
 		{
 			id: 3,
+			read: false,
 			first_name: 'Lexi',
 			last_name: 'Williams',
 			requested_feedback: [],
@@ -120,6 +123,7 @@ var data = {
 		},
 		{
 			id: 4,
+			read: false,
 			first_name: 'Lydia',
 			last_name: 'Clark',
 			requested_feedback: [],
@@ -157,6 +161,7 @@ var data = {
 		},
 		{
 			id: 5,
+			read: false,
 			first_name: 'Emily',
 			last_name: 'Ortez',
 			requested_feedback: [],
