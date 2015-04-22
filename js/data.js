@@ -17,13 +17,25 @@ var data = {
 				{
 					id: 11235281,
 					type: 'rad',
-					date: '1/3/2014',
+					date: '1/3/2015',
 					image_id: 'R1',
 					exam_type: 'Ultrasound',
+					LBIRAD: 3,
+					RBIRAD: 2,
+					findings: '',
+					recommend: 'Breast MRI recommended',
+					radiologist_id: 1
+				},
+				{
+					id: 11235398,
+					type: 'rad',
+					date: '1/5/2015',
+					image_id: 'R1',
+					exam_type: 'Mammogram',
 					LBIRAD: 4,
 					RBIRAD: 2,
 					findings: '',
-					recommend: 'Biopsy considered',
+					recommend: 'Biopsy recommended',
 					radiologist_id: 1
 				}
 			]
