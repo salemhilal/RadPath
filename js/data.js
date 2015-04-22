@@ -161,7 +161,7 @@ var data = {
 					recommend: 'Biopsy recommended',
 					radiologist_id: 2
 				},
-				{
+				/*{
 					id: 52589285,
 					type: 'path',
 					date: '6/15/2012',
@@ -172,7 +172,7 @@ var data = {
 					findings: ' FIBROCYSTIC CHANGE | DUCT ECTASIA | MARKED DUCTAL EPITHELIAL HYPERPLASIA | MICROCALCIFICATIONS',
 					classification: 'Benign',
 					pathologist_id: 4
-				}
+				}*/
 			]
 		},
 		{

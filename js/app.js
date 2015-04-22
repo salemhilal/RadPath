@@ -259,7 +259,46 @@ app.controller('RadPathController', function($scope) {
 			}, SECONDS_BEFORE_FEEDBACK * 1000);
 		}
 	}, 1000);
+
+
+    var checkForLydia = setInterval(function () {
+        var potentiallyLydia = that.patients.filter(function (patient) {
+            return  patient.first_name == "Lydia" &&
+                    patient.requested_feedback &&
+                    patient.requested_feedback.is_fulfilled === false;
+        });
+
+        // Is Lydia awaiting feedback?
+        if (potentiallyLydia.length === 1) {
+            clearInterval(checkForLydia);
+            setTimeout(function() {
+                $scope.$apply(function () {
+                    var lydia = potentiallyLydia[0];
+                    var newCase = {
+                        id: 52589285,
+                        type: 'path',
+                        date: '6/15/2012',
+                        diagnosis: 'Fibrocystic change with duct ectasia and marked ductal epithelial hyperplasia associated with microcalcifications',
+                        fd_cui: 'C0016034 | C0152442 | C0741698',
+                        location: 'Right Breast',
+                        procedure: 'Biopsy',
+                        findings: ' FIBROCYSTIC CHANGE | DUCT ECTASIA | MARKED DUCTAL EPITHELIAL HYPERPLASIA | MICROCALCIFICATIONS',
+                        classification: 'Benign',
+                        pathologist_id: 4
+                    };
+
+                    lydia.requested_feedback.is_fulfilled = true;
+                    lydia.seen = false;
+                    lydia.read = false;
+                    lydia.feedback.push(newCase);
+                    lydia.reports.push(newCase);
+                });
+
+            }, SECONDS_BEFORE_FEEDBACK * 1000);
+        }
+    });
 });
+
 
 app.controller('RequestFeedbackController', function($scope) {
 	$scope.feedbackRequest = {};
