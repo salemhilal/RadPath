@@ -1,6 +1,6 @@
 (function(){
 
-var SECONDS_BEFORE_FEEDBACK = 20;
+var SECONDS_BEFORE_FEEDBACK = 5;
 var app = angular.module('radpath', []);
 
 

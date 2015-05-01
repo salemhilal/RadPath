@@ -22,7 +22,7 @@ var data = {
                     LBIRAD: 3,
                     RBIRAD: 2,
                     findings: '',
-                    recommend: 'Breast MRI recommended',
+                    recommend: 'Mammogram recommended',
                     radiologist_id: 1
                 },
                 {
@@ -30,7 +30,7 @@ var data = {
                     type: 'rad',
                     date: '1/5/2015',
                     image_id: 'R1',
-                    exam_type: 'Mammogram',
+                    exam_type: 'MRI',
                     LBIRAD: 4,
                     RBIRAD: 2,
                     findings: '',
